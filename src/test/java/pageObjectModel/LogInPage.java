@@ -9,13 +9,13 @@ public class LogInPage {
 
     WebDriver driver;
 
-    @FindBy(xpath="//*[@type='email']/../..//*[contains(@classname, 'fields-container')]")
+    @FindBy(xpath="//*[@type='email']")
     WebElement UsernameEmail;
 
-    @FindBy(xpath="//*[@type='password'/../..//*[contains(@classname, 'fields-container')]")
+    @FindBy(xpath="//*[@type='password']")
     WebElement Password;
 
-    @FindBy(css=".controls__submit def-btn-success main_color")
+    @FindBy(css=".controls__submit")
     WebElement SignIn;
 
     public LogInPage(WebDriver driver) {
