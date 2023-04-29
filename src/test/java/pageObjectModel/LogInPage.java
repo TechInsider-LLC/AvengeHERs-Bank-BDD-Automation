@@ -18,6 +18,7 @@ public class LogInPage {
     @FindBy(css=".controls__submit")
     WebElement SignIn;
 
+
     public LogInPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
