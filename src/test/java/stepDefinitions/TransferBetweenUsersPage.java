@@ -14,7 +14,9 @@ import java.time.Duration;
 public class TransferBetweenUsersPage {
 
     WebDriver driver;
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+
+    WebDriverWait wait;
+
     @FindBy(css =".transfer")
     WebElement Transfers;
 
@@ -45,20 +47,25 @@ public class TransferBetweenUsersPage {
     @FindBy(xpath = "//*[width=\"87\"]")
     WebElement Users;
 
+//   @FindBy(css = ".ng-value-container")
+ //  WebElement form;
+
     @FindBy(css = ".popup-message")
     WebElement popup;
 
     public TransferBetweenUsersPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         PageFactory.initElements(driver, this);
     }
 
 
     public void TransferBetweenUsers() throws InterruptedException {
         Transfers.click();
-        wait.until(ExpectedConditions.visibilityOf(Users));
-        TransferBetweenUsers.click();
         Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(TransferBetweenUsers));
+        TransferBetweenUsers.click();
+        wait.until(ExpectedConditions.visibilityOf( DebitForm));
         DebitForm.click();
         Thread.sleep(2000);
         Card.click();
@@ -69,7 +76,6 @@ public class TransferBetweenUsersPage {
         Thread.sleep(2000);
         Continue.click();
         Confirm.click();
-
         wait.until(ExpectedConditions.visibilityOf(popup));
     }
 }
