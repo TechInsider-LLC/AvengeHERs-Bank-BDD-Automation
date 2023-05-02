@@ -21,8 +21,8 @@ public class TransferBetweenAccounts {
     TransferBetweenAccounts1 transfer = new TransferBetweenAccounts1(driver);
 
 
-    @When("User transfers money between accounts")
-    public void user_transfers_money_between_accounts() throws InterruptedException {
+    @When("User transfers between accounts")
+    public void user_transfers_between_accounts()  throws InterruptedException {
 
         logIn.openHomePage();
         Thread.sleep(3000);
