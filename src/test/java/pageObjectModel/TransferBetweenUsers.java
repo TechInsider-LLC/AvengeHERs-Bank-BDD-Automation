@@ -26,9 +26,9 @@ public class TransferBetweenUsers {
     }
     @Then("Customer should be successfully transfers money")
     public void customer_should_be_successfully_transfers_money() throws InterruptedException {
-        String expected = "Log Out";
+        String expected = "Back to transfers.";
         Thread.sleep(3000);
-        String actual = driver.findElement(By.cssSelector(".controls__logout")).getText();
+        String actual = driver.findElement(By.cssSelector("[href=\"/transfer\"]")).getText();
         assertEquals(expected, actual);
     }
 }

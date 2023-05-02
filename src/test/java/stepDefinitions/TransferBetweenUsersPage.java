@@ -42,7 +42,7 @@ public class TransferBetweenUsersPage {
     @FindBy(xpath="//*[@type='submit']")
     WebElement Confirm;
 
-    @FindBy(css = "[href=\"/transfer\"]")
+//    @FindBy(css = "[href=\"/transfer\"]")
     WebElement Back;
 
 //  @FindBy(css = ".popup-message")
@@ -70,7 +70,7 @@ public class TransferBetweenUsersPage {
         Continue.click();
         Confirm.click();
         Thread.sleep(2000);
-        Back.click();
+ //       Back.click();
 //      wait.until(ExpectedConditions.visibilityOf(popup));
     }
 }
