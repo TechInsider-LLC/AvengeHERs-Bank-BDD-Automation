@@ -54,8 +54,6 @@ public class TransferBetweenAccounts1 {
 
   public void TransferBetweenAccounts() {
 
-    WebDriverManager.firefoxdriver().setup();
-    WebDriver driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
     Transfers.click();
