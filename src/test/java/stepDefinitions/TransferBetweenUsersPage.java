@@ -14,7 +14,7 @@ import java.time.Duration;
 public class TransferBetweenUsersPage {
 
     WebDriver driver;
-//  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     @FindBy(css =".transfer")
     WebElement Transfers;
 
@@ -42,10 +42,10 @@ public class TransferBetweenUsersPage {
     @FindBy(xpath="//*[@type='submit']")
     WebElement Confirm;
 
-//    @FindBy(css = "[href=\"/transfer\"]")
-    WebElement Back;
+    @FindBy(xpath = "//*[width=\"87\"]")
+    WebElement Users;
 
-//  @FindBy(css = ".popup-message")
+    @FindBy(css = ".popup-message")
     WebElement popup;
 
     public TransferBetweenUsersPage(WebDriver driver) {
@@ -56,7 +56,7 @@ public class TransferBetweenUsersPage {
 
     public void TransferBetweenUsers() throws InterruptedException {
         Transfers.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(Users));
         TransferBetweenUsers.click();
         Thread.sleep(2000);
         DebitForm.click();
@@ -69,8 +69,7 @@ public class TransferBetweenUsersPage {
         Thread.sleep(2000);
         Continue.click();
         Confirm.click();
-        Thread.sleep(2000);
- //       Back.click();
-//      wait.until(ExpectedConditions.visibilityOf(popup));
+
+        wait.until(ExpectedConditions.visibilityOf(popup));
     }
 }
