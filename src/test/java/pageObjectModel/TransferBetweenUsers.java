@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import stepDefinitions.TransferBetweenUsersPage;
 import utility.Hooks;
+import utility.ScenarioData;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,9 +19,9 @@ public class TransferBetweenUsers {
     @When("User transfers money")
     public void user_transfers_money() throws InterruptedException {
         logIn.openHomePage();
-        Thread.sleep(3000);
-        logIn.with("demo-user","Demo-Access1");
-        Thread.sleep(3000);
+        Thread.sleep(2000);
+        logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
+        Thread.sleep(5000);
         transfer.TransferBetweenUsers();
 
     }

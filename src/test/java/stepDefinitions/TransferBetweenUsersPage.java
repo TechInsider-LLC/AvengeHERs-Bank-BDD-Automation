@@ -8,13 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.ScenarioData;
 
 import java.time.Duration;
+import java.util.Scanner;
 
 public class TransferBetweenUsersPage {
 
     WebDriver driver;
-
     WebDriverWait wait;
 
     @FindBy(css =".transfer")
@@ -65,14 +66,14 @@ public class TransferBetweenUsersPage {
         Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOf(TransferBetweenUsers));
         TransferBetweenUsers.click();
-        wait.until(ExpectedConditions.visibilityOf( DebitForm));
+        wait.until(ExpectedConditions.visibilityOf(DebitForm));
         DebitForm.click();
         Thread.sleep(2000);
         Card.click();
-        UserName.sendKeys("jsmith");
-        Account.sendKeys("EBQ24123487654");
+        UserName.sendKeys(ScenarioData.get("nickname"));
+        Account.sendKeys(ScenarioData.get("account"));
         Thread.sleep(2000);
-        Amount.sendKeys("1000");
+        Amount.sendKeys(ScenarioData.get("amount"));
         Thread.sleep(2000);
         Continue.click();
         Confirm.click();
