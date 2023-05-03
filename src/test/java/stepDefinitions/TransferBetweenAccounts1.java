@@ -1,22 +1,27 @@
 package stepDefinitions;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pageObjectModel.TransferBetweenAccounts;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utility.ScenarioData;
 
 import java.time.Duration;
 import java.time.Instant;
 
+import static java.time.Duration.*;
+
 public class TransferBetweenAccounts1 {
 
     WebDriver driver;
+    WebDriverWait wait;
 
-  @FindBy(css = ".aside__label main_color transfer")
+  @FindBy(css = ".transfer")
   WebElement Transfers;
 
   @FindBy(css = ".section__heading")
@@ -24,6 +29,8 @@ public class TransferBetweenAccounts1 {
 
   @FindBy(css = ".ng-value-container")
     WebElement DebitFrom;
+  @FindBy(css = ".select-value")
+  WebElement selectvalue;
 
   @FindBy(css = ".EBQ11113487654")
   WebElement Checking;
@@ -37,10 +44,10 @@ public class TransferBetweenAccounts1 {
   @FindBy(css = ".native-input amount ng-pristine ng-invalid with-currency ng-touched")
   WebElement AmountToTransfer;
 
-  @FindBy(css = ".def-btn-success main_color")
+  @FindBy(xpath = "//*[@type='submit']")
   WebElement Continue;
 
-  @FindBy(css = ".def-btn-success main_color")
+  @FindBy(xpath = "//button[contains(text(), \"Confirm\")]")
   WebElement Confirm;
 
   @FindBy(css = ".popup-message")
@@ -48,21 +55,27 @@ public class TransferBetweenAccounts1 {
 
  public TransferBetweenAccounts1(WebDriver driver){
    this.driver = driver;
+   wait = new WebDriverWait(driver, Duration.ofSeconds(10));
    PageFactory.initElements(driver,this);
  }
 
 
-  public void TransferBetweenAccounts() {
+  public void TransferBetweenAccounts() throws InterruptedException {
 
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
     Transfers.click();
+    Thread.sleep(2000);
+    wait.until(ExpectedConditions.visibilityOf(TransferBetweenAccounts));
     TransferBetweenAccounts.click();
+    wait.until(ExpectedConditions.visibilityOf(DebitFrom));
     DebitFrom.click();
-    Checking.sendKeys("EBQ11113487654");
+    wait.until(ExpectedConditions.visibilityOf(EBQ11223487456));
+
+
+    Checking.sendKeys(ScenarioData.get("Checking"));
     CreditTo.click();
-    Savings.sendKeys("EBQ11223487456");
-    AmountToTransfer.sendKeys("10000");
+    Savings.sendKeys(ScenarioData.get("Savings"));
+    AmountToTransfer.sendKeys(ScenarioData.get("amount"));
     Continue.click();
     Confirm.click();
   }

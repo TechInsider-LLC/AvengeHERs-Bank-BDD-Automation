@@ -23,6 +23,7 @@ public class Hooks {
 
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
 
     }
