@@ -1,4 +1,4 @@
-package stepDefinitions;
+package pageObjectModel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -39,17 +39,11 @@ public class TransferBetweenUsersPage {
     @FindBy(xpath="//*[@placeholder='0,000.00']")
     WebElement Amount;
 
-    @FindBy(xpath="//*[@type='submit']")
+    @FindBy(xpath="//*[contains(text(), \"Continue\")]")
     WebElement Continue;
 
-    @FindBy(xpath="//*[@type='submit']")
+    @FindBy(xpath ="//button[contains(text(), \"Confirm\")]")
     WebElement Confirm;
-
-    @FindBy(xpath = "//*[width=\"87\"]")
-    WebElement Users;
-
-//   @FindBy(css = ".ng-value-container")
- //  WebElement form;
 
     @FindBy(css = ".popup-message")
     WebElement popup;
@@ -68,14 +62,15 @@ public class TransferBetweenUsersPage {
         TransferBetweenUsers.click();
         wait.until(ExpectedConditions.visibilityOf(DebitForm));
         DebitForm.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(Card));
         Card.click();
         UserName.sendKeys(ScenarioData.get("nickname"));
         Account.sendKeys(ScenarioData.get("account"));
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(Amount));
         Amount.sendKeys(ScenarioData.get("amount"));
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(Continue));
         Continue.click();
+        wait.until(ExpectedConditions.visibilityOf(Confirm));
         Confirm.click();
         wait.until(ExpectedConditions.visibilityOf(popup));
     }

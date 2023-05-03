@@ -22,15 +22,17 @@ public class Hooks {
     @Before
     public void setUp(){
 
+
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
 
     }
 
     @After
     public void tearDown() throws InterruptedException {
-//        driver.quit();
+        driver.quit();
     }
 }
 
