@@ -16,11 +16,7 @@ public class OutgoingWireTransfer {
     WebDriver driver= Hooks.getDriver();
     LogInPage logIn = new LogInPage(driver);
     OutgoingWireTransferPage transfer = new OutgoingWireTransferPage(driver);
-
-    @Given("Customer has test data for {string}")
-    public void customer_has_test_data_for(String string) {
-
-    }
+    
 
     @When("User initiates an outgoing wire transfer")
     public void user_initiates_an_outgoing_wire_transfer() throws InterruptedException {
