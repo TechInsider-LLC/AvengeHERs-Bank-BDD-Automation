@@ -1,4 +1,4 @@
-@regression
+@regression @smoke @login
 Feature: Log In
 
   Scenario: Log In
