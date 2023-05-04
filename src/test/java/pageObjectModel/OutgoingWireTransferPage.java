@@ -1,6 +1,7 @@
 package pageObjectModel;
 
 import org.checkerframework.checker.units.qual.C;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Currency;
 
 public class OutgoingWireTransferPage {
 
@@ -18,14 +20,13 @@ public class OutgoingWireTransferPage {
     @FindBy(css =".transfer")
     WebElement Transfers;
 
-    @FindBy(css="[ng-reflect-router-link=\"outgoing-wire-transfer\"]")
+    @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
     WebElement OutgoingWireTransferPage;
 
-
-    @FindBy(xpath = "//*[@ng-reflect-select-label='Debit From']")
+    @FindBy(xpath = "//*[@ng-reflect-placeholder-text='Select account']")
     WebElement DebitForm;
 
-    @FindBy(css = ".ng-select-bottom #adcf4acf48a8")
+    @FindBy(css = ".ng-option-marked")
     WebElement Card;
 
     @FindBy(css = "#beneficiary-bankSwiftBic")
@@ -67,7 +68,7 @@ public class OutgoingWireTransferPage {
     @FindBy (xpath="//*[@ng-reflect-name='customerCountry']")
     WebElement CustomerCountryBox;
 
-    @FindBy (css = "#adfa5273bdc9")
+    @FindBy (xpath = "//*[contains(text(), 'United States of America')]")
     WebElement CustomerCountry;
 
     @FindBy (css = "#acc-iban")
@@ -103,10 +104,10 @@ public class OutgoingWireTransferPage {
     @FindBy (css = "#outgoingAmountOptionsPipe")
     WebElement Amount;
 
-    @FindBy (xpath = "//*[@autocomplete=\"ab3b936ea7db\"]")
+    @FindBy (xpath = "//*[@ng-reflect-placeholder='Select currency']")
     WebElement CurrencyBox;
 
-    @FindBy (css = "#a955ce5f8303")
+    @FindBy (xpath = "//*[contains(text(), \"Currency\")]/..//input")
     WebElement Currency;
 
  //   @FindBy (css = "#description")
@@ -133,11 +134,11 @@ public class OutgoingWireTransferPage {
     public void OutgoingWireTransfer() throws InterruptedException {
         Thread.sleep(2000);
         Transfers.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         OutgoingWireTransferPage.click();
         Thread.sleep(2000);
         DebitForm.click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         Card.click();
         Thread.sleep(2000);
         SWIFTBIC.sendKeys("SMCOGB2L");
@@ -155,9 +156,13 @@ public class OutgoingWireTransferPage {
         AccNumIBAN.sendKeys("AL35202111090000000001234567");
         RefMessage.sendKeys("Invoice Payment #1234");
         Amount.sendKeys("1000");
+        Thread.sleep(2000);
         CurrencyBox.click();
-        Currency.click();
+        wait.until(ExpectedConditions.visibilityOf(Currency));
+        Currency.sendKeys("USD", Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOf(Continue));
         Continue.click();
+        wait.until(ExpectedConditions.visibilityOf(Confirm));
         Confirm.click();
         wait.until(ExpectedConditions.visibilityOf(popup));
 
