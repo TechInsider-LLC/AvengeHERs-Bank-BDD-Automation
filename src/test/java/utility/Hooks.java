@@ -24,7 +24,6 @@ public class Hooks {
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-
     }
 
     @After

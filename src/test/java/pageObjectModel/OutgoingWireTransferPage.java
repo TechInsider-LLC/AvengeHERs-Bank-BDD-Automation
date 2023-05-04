@@ -52,8 +52,8 @@ public class OutgoingWireTransferPage {
     @FindBy (css = "#customer-address")
     WebElement  AddressLine1;
 
-    @FindBy (css = "#customer-second-address")
-    WebElement AddressLine2;
+ //   @FindBy (css = "#customer-second-address")
+ //   WebElement AddressLine2;
 
     @FindBy (css ="#customer-city")
     WebElement City;
@@ -61,7 +61,10 @@ public class OutgoingWireTransferPage {
     @FindBy (css = "#customer-state-prov-region")
     WebElement StateProvinceRegion;
 
-    @FindBy (xpath = "//*[@autocomplete=\"aa43b4ed4787\"]")
+    @FindBy (xpath = "//*[@autocomplete=\"aedfbc1ee837\"]")
+    WebElement CustomerCountryBox;
+
+    @FindBy (css = "#a304b8ce3122")
     WebElement CustomerCountry;
 
     @FindBy (css = "#acc-iban")
@@ -70,44 +73,45 @@ public class OutgoingWireTransferPage {
     @FindBy(css = "#ref-message")
     WebElement RefMessage;
 
-    @FindBy (css = "#general-owt-transfer__specify-inter-bank")
-    WebElement IntermediaryBank;
+ //   @FindBy (css = "#general-owt-transfer__specify-inter-bank")
+ //   WebElement IntermediaryBank;
 
-    @FindBy (css ="#intermediary-bankSwiftBic")
-    WebElement SWIFTBIC1;
+//    @FindBy (css ="#intermediary-bankSwiftBic")
+//    WebElement SWIFTBIC1;
 
-    @FindBy(css = "#intermediary-bankName")
-    WebElement IntermediaryBankName;
+//    @FindBy(css = "#intermediary-bankName")
+//    WebElement IntermediaryBankName;
 
-    @FindBy (css = "#intermediary-address")
-    WebElement IntermediaryBankAddress;
+//    @FindBy (css = "#intermediary-address")
+//    WebElement IntermediaryBankAddress;
 
-    @FindBy (css = "#intermediary-location")
-    WebElement IntermediaryBankLocation;
+//    @FindBy (css = "#intermediary-location")
+//    WebElement IntermediaryBankLocation;
 
-    @FindBy (xpath= "//*[@autocomplete=\"a842edd5e680\"]")
-    WebElement IntermediaryBankCountryBox;
+ //   @FindBy (xpath= "//*[@autocomplete=\"a842edd5e680\"]")
+ //   WebElement IntermediaryBankCountryBox;
 
-    @FindBy (css = "#aba762842a13")
-    WebElement IntermediaryBankCountry;
+ //   @FindBy (css = "#aba762842a13")
+//    WebElement IntermediaryBankCountry;
 
-    @FindBy (css = "#intermediarybank-acc-iban")
-    WebElement IntermediaryBankAccNumIBAN;
+//    @FindBy (css = "#intermediarybank-acc-iban")
+//    WebElement IntermediaryBankAccNumIBAN;
 
     @FindBy (css = "#outgoingAmountOptionsPipe")
     WebElement Amount;
 
     @FindBy (xpath = "//*[@autocomplete=\"ab3b936ea7db\"]")
+    WebElement CurrencyBox;
+
+    @FindBy (css = "#a955ce5f8303")
     WebElement Currency;
 
-    @FindBy (css = "#aa3171d7b11f")
-    WebElement USD;
-
-    @FindBy (css = "#description")
-    WebElement Description;
+ //   @FindBy (css = "#description")
+//    WebElement Description;
 
     @FindBy(xpath="//*[contains(text(), \"Continue\")]")
     WebElement Continue;
+    
 
 
     public OutgoingWireTransferPage(WebDriver driver) {
@@ -115,27 +119,25 @@ public class OutgoingWireTransferPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void OutgoingWireTransferPage(){
+    public void OutgoingWireTransfer(){
         Transfers.click();
         OutgoingWireTransferPage.click();
         DebitForm.click();
         Card.click();
         SWIFTBIC.sendKeys("SMCOGB2L");
-        CustomerName.sendKeys();
-        AddressLine1.sendKeys();
-        AddressLine2.sendKeys();
-        City.sendKeys();
-        StateProvinceRegion.sendKeys();
-        CustomerCountry.sendKeys();
+        CustomerName.sendKeys("Jane");
+        AddressLine1.sendKeys("2009 85th Str. Apt.2");
+        City.sendKeys("Brooklyn");
+        StateProvinceRegion.sendKeys("New York");
+        CustomerCountryBox.click();
+        CustomerCountry.click();
         AccNumIBAN.sendKeys("AL35202111090000000001234567");
-        RefMessage.sendKeys();
-        IntermediaryBank.click();
-
-
-
-
+        RefMessage.sendKeys("Invoice Payment #1234");
+        Amount.sendKeys("1000");
+        CurrencyBox.click();
+        Currency.click();
+        Continue.click();
 
     }
-
 
 }
