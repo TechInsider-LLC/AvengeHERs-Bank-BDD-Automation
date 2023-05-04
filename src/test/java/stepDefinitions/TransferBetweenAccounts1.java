@@ -69,7 +69,7 @@ public class TransferBetweenAccounts1 {
     TransferBetweenAccounts.click();
     wait.until(ExpectedConditions.visibilityOf(DebitFrom));
     DebitFrom.click();
-    wait.until(ExpectedConditions.visibilityOf(EBQ11223487456));
+
 
 
     Checking.sendKeys(ScenarioData.get("Checking"));
