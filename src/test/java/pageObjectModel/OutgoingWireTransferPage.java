@@ -20,10 +20,10 @@ public class OutgoingWireTransferPage {
     @FindBy(css="[ng-reflect-router-link=\"outgoing-wire-transfer\"]")
     WebElement OutgoingWireTransferPage;
 
-    @FindBy(css = ".ng-select-opened")
+    @FindBy(xpath = "//*[@ng-reflect-placeholder-text='Select account']")
     WebElement DebitForm;
 
-    @FindBy(css = "#a013f4f84337")
+    @FindBy(css = ".ng-option-marked")
     WebElement Card;
 
     @FindBy(css = "#beneficiary-bankSwiftBic")
@@ -62,10 +62,10 @@ public class OutgoingWireTransferPage {
     @FindBy (css = "#customer-state-prov-region")
     WebElement StateProvinceRegion;
 
-    @FindBy (xpath = "//*[@autocomplete=\"aedfbc1ee837\"]")
+    @FindBy (xpath="//*[@ng-reflect-name='customerCountry']")
     WebElement CustomerCountryBox;
 
-    @FindBy (css = "#a304b8ce3122")
+    @FindBy (css = "#adfa5273bdc9")
     WebElement CustomerCountry;
 
     @FindBy (css = "#acc-iban")
@@ -127,17 +127,27 @@ public class OutgoingWireTransferPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void OutgoingWireTransfer(){
+    public void OutgoingWireTransfer() throws InterruptedException {
+        Thread.sleep(2000);
         Transfers.click();
+        Thread.sleep(2000);
         OutgoingWireTransferPage.click();
+        Thread.sleep(2000);
         DebitForm.click();
+        Thread.sleep(2000);
         Card.click();
+        Thread.sleep(2000);
         SWIFTBIC.sendKeys("SMCOGB2L");
+        Thread.sleep(2000);
         CustomerName.sendKeys("Jane");
+        Thread.sleep(2000);
         AddressLine1.sendKeys("2009 85th Str. Apt.2");
+        Thread.sleep(2000);
         City.sendKeys("Brooklyn");
         StateProvinceRegion.sendKeys("New York");
+        Thread.sleep(2000);
         CustomerCountryBox.click();
+        Thread.sleep(2000);
         CustomerCountry.click();
         AccNumIBAN.sendKeys("AL35202111090000000001234567");
         RefMessage.sendKeys("Invoice Payment #1234");
