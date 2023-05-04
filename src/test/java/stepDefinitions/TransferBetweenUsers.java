@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import pageObjectModel.LogInPage;
 import pageObjectModel.TransferBetweenUsersPage;
 import utility.Hooks;
-import utility.ScenarioData;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,17 +20,15 @@ public class TransferBetweenUsers {
     public void user_transfers_money() throws InterruptedException {
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
+        logIn.with("demo-user","Demo-Access1");
         Thread.sleep(5000);
         transfer.TransferBetweenUsers();
 
     }
     @Then("Customer should be successfully transfers money")
-
     public void customer_should_be_successfully_transfers_money() {
         String expected = "Back to transfers";
         String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
-
         assertEquals(expected, actual);
     }
 }
