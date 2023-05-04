@@ -3,10 +3,13 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjectModel.LogInPage;
 import pageObjectModel.OutgoingWireTransferPage;
 import utility.Hooks;
+
+import static org.junit.Assert.assertEquals;
 
 public class OutgoingWireTransfer {
 
@@ -28,6 +31,9 @@ public class OutgoingWireTransfer {
     }
     @Then("Customer should be successfully outgoing wire transfer")
     public void customer_should_be_successfully_outgoing_wire_transfer() {
+        String expected = "Back to transfers";
+        String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
+        assertEquals(expected, actual);
 
     }
 

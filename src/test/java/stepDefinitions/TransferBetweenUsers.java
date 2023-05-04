@@ -27,7 +27,7 @@ public class TransferBetweenUsers {
     }
     @Then("Customer should be successfully transfers money")
     public void customer_should_be_successfully_transfers_money() {
-        String expected = "Back to transfers.";
+        String expected = "Back to transfers";
         String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
         assertEquals(expected, actual);
     }

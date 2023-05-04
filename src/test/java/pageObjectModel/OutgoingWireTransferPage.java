@@ -111,11 +111,18 @@ public class OutgoingWireTransferPage {
 
     @FindBy(xpath="//*[contains(text(), \"Continue\")]")
     WebElement Continue;
+
+    @FindBy(xpath = "//button[contains(text(), \"Confirm\")]")
+    WebElement Confirm;
+
+    @FindBy(css = ".popup-message")
+    WebElement popup;
     
 
 
     public OutgoingWireTransferPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         PageFactory.initElements(driver, this);
     }
 
@@ -137,6 +144,8 @@ public class OutgoingWireTransferPage {
         CurrencyBox.click();
         Currency.click();
         Continue.click();
+        Confirm.click();
+
 
     }
 
