@@ -13,6 +13,7 @@ import java.time.Duration;
 public class OutgoingWireTransferPage {
 
     WebDriver driver;
+    WebDriverWait wait;
 
     @FindBy(css =".transfer")
     WebElement Transfers;
@@ -20,10 +21,11 @@ public class OutgoingWireTransferPage {
     @FindBy(css="[ng-reflect-router-link=\"outgoing-wire-transfer\"]")
     WebElement OutgoingWireTransferPage;
 
-    @FindBy(xpath = "//*[@ng-reflect-placeholder-text='Select account']")
+
+    @FindBy(xpath = "//*[@ng-reflect-select-label='Debit From']")
     WebElement DebitForm;
 
-    @FindBy(css = ".ng-option-marked")
+    @FindBy(css = ".ng-select-bottom #adcf4acf48a8")
     WebElement Card;
 
     @FindBy(css = "#beneficiary-bankSwiftBic")
@@ -124,6 +126,7 @@ public class OutgoingWireTransferPage {
 
     public OutgoingWireTransferPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         PageFactory.initElements(driver, this);
     }
 
@@ -134,7 +137,7 @@ public class OutgoingWireTransferPage {
         OutgoingWireTransferPage.click();
         Thread.sleep(2000);
         DebitForm.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         Card.click();
         Thread.sleep(2000);
         SWIFTBIC.sendKeys("SMCOGB2L");
@@ -156,6 +159,7 @@ public class OutgoingWireTransferPage {
         Currency.click();
         Continue.click();
         Confirm.click();
+        wait.until(ExpectedConditions.visibilityOf(popup));
 
     }
 
