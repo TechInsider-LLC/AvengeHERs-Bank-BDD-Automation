@@ -34,32 +34,11 @@ public class OutgoingWireTransferPage {
     @FindBy(css = "#beneficiary-bankSwiftBic")
     WebElement SWIFTBIC;
 
- //   @FindBy(css = "#beneficiary-bankName")
-//    WebElement BankName;
-
-//    @FindBy(css = "#beneficiary-address")
- //   WebElement BankAddress;
-
-//    @FindBy (css = "#beneficiary-location")
-//    WebElement Location;
-
-//    @FindBy (xpath = "autocomplete=\"a052e72291a9\"")
-//    WebElement CountryBox;
-
- //   @FindBy (css = "#ab26e70182d9")
-//    WebElement BankCountry;
-
-//    @FindBy (css = "#beneficiary-aba-rtn")
- //   WebElement ABARTNSortCode;
-
     @FindBy(css = "#customer-name")
     WebElement CustomerName;
 
     @FindBy (css = "#customer-address")
     WebElement  AddressLine1;
-
- //   @FindBy (css = "#customer-second-address")
- //   WebElement AddressLine2;
 
     @FindBy (css ="#customer-city")
     WebElement City;
@@ -79,30 +58,6 @@ public class OutgoingWireTransferPage {
     @FindBy(css = "#ref-message")
     WebElement RefMessage;
 
- //   @FindBy (css = "#general-owt-transfer__specify-inter-bank")
- //   WebElement IntermediaryBank;
-
-//    @FindBy (css ="#intermediary-bankSwiftBic")
-//    WebElement SWIFTBIC1;
-
-//    @FindBy(css = "#intermediary-bankName")
-//    WebElement IntermediaryBankName;
-
-//    @FindBy (css = "#intermediary-address")
-//    WebElement IntermediaryBankAddress;
-
-//    @FindBy (css = "#intermediary-location")
-//    WebElement IntermediaryBankLocation;
-
- //   @FindBy (xpath= "//*[@autocomplete=\"a842edd5e680\"]")
- //   WebElement IntermediaryBankCountryBox;
-
- //   @FindBy (css = "#aba762842a13")
-//    WebElement IntermediaryBankCountry;
-
-//    @FindBy (css = "#intermediarybank-acc-iban")
-//    WebElement IntermediaryBankAccNumIBAN;
-
     @FindBy (css = "#outgoingAmountOptionsPipe")
     WebElement Amount;
 
@@ -111,9 +66,6 @@ public class OutgoingWireTransferPage {
 
     @FindBy (xpath = "//*[contains(text(), \"Currency\")]/..//input")
     WebElement Currency;
-
- //   @FindBy (css = "#description")
-//    WebElement Description;
 
     @FindBy(xpath="//*[contains(text(), \"Continue\")]")
     WebElement Continue;
@@ -129,7 +81,7 @@ public class OutgoingWireTransferPage {
 
     public OutgoingWireTransferPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         PageFactory.initElements(driver, this);
     }
 
@@ -163,7 +115,7 @@ public class OutgoingWireTransferPage {
         Currency.sendKeys("USD", Keys.ENTER);
         wait.until(ExpectedConditions.visibilityOf(Continue));
         Continue.click();
-        wait.until(ExpectedConditions.visibilityOf(Confirm));
+        wait.until(ExpectedConditions.elementToBeClickable(Confirm));
         Confirm.click();
         wait.until(ExpectedConditions.visibilityOf(popup));
 
