@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.ScenarioData;
 
 import java.time.Duration;
 import java.util.Currency;
@@ -17,7 +18,7 @@ public class OutgoingWireTransferPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    @FindBy(css =".transfer")
+    @FindBy(xpath = "//*[@ng-reflect-router-link=\"/transfer\"]")
     WebElement Transfers;
 
     @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
@@ -132,31 +133,31 @@ public class OutgoingWireTransferPage {
     }
 
     public void OutgoingWireTransfer() throws InterruptedException {
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(Transfers));
         Transfers.click();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOf(OutgoingWireTransferPage));
         OutgoingWireTransferPage.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(DebitForm));
         DebitForm.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(Card));
         Card.click();
-        Thread.sleep(2000);
-        SWIFTBIC.sendKeys("SMCOGB2L");
-        Thread.sleep(2000);
-        CustomerName.sendKeys("Jane");
-        Thread.sleep(2000);
-        AddressLine1.sendKeys("2009 85th Str. Apt.2");
-        Thread.sleep(2000);
-        City.sendKeys("Brooklyn");
-        StateProvinceRegion.sendKeys("New York");
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(SWIFTBIC));
+        SWIFTBIC.sendKeys(ScenarioData.get("SWIFTBIC"));
+        wait.until(ExpectedConditions.visibilityOf(CustomerName));
+        CustomerName.sendKeys(ScenarioData.get("nickname"));
+        wait.until(ExpectedConditions.visibilityOf(AddressLine1));
+        AddressLine1.sendKeys(ScenarioData.get("address"));
+        wait.until(ExpectedConditions.visibilityOf(City));
+        City.sendKeys(ScenarioData.get("city"));
+        StateProvinceRegion.sendKeys(ScenarioData.get("state"));
+        wait.until(ExpectedConditions.visibilityOf(CustomerCountryBox));
         CustomerCountryBox.click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(CustomerCountry));
         CustomerCountry.click();
-        AccNumIBAN.sendKeys("AL35202111090000000001234567");
-        RefMessage.sendKeys("Invoice Payment #1234");
-        Amount.sendKeys("1000");
-        Thread.sleep(2000);
+        AccNumIBAN.sendKeys(ScenarioData.get("accountNumber"));
+        RefMessage.sendKeys(ScenarioData.get("message"));
+        Amount.sendKeys(ScenarioData.get("amount"));
+        wait.until(ExpectedConditions.visibilityOf(CurrencyBox));
         CurrencyBox.click();
         wait.until(ExpectedConditions.visibilityOf(Currency));
         Currency.sendKeys("USD", Keys.ENTER);

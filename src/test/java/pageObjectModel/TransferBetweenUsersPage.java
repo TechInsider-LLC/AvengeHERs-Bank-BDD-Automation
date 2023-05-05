@@ -4,23 +4,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.ScenarioData;
 
 import java.time.Duration;
 
 public class TransferBetweenUsersPage {
 
     WebDriver driver;
-    @FindBy(css =".aside__label main_color transfer")
+    WebDriverWait wait;
+
+    @FindBy(css =".transfer")
     WebElement Transfers;
 
-    @FindBy(partialLinkText="Transfer Between Users")
+    @FindBy(css = "[ng-reflect-router-link=\"transfer-between-users\"]")
     WebElement TransferBetweenUsers;
 
     @FindBy(css=".ng-value-container")
     WebElement DebitForm;
 
-    @FindBy(css="#ab3747425952")
+    @FindBy(css=".ng-option-marked")
     WebElement Card;
 
     @FindBy(css="#username")
@@ -29,30 +33,43 @@ public class TransferBetweenUsersPage {
     @FindBy(css="#account")
     WebElement Account;
 
-    @FindBy(css="native-input amount ng-pristine ng-invalid with-currency ng-touched")
+    @FindBy(xpath="//*[@placeholder='0,000.00']")
     WebElement Amount;
 
-    @FindBy(css="def-btn-success main_color")
+    @FindBy(xpath="//*[contains(text(), \"Continue\")]")
     WebElement Continue;
 
-    @FindBy(css="def-btn-success main_color")
+    @FindBy(xpath ="//button[contains(text(), \"Confirm\")]")
     WebElement Confirm;
+
+    @FindBy(css = ".popup-message")
+    WebElement popup;
 
     public TransferBetweenUsersPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         PageFactory.initElements(driver, this);
     }
 
 
-    public void TransferBetweenUsers(){
+    public void TransferBetweenUsers() throws InterruptedException {
         Transfers.click();
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOf(TransferBetweenUsers));
         TransferBetweenUsers.click();
+        wait.until(ExpectedConditions.visibilityOf(DebitForm));
         DebitForm.click();
+        wait.until(ExpectedConditions.visibilityOf(Card));
         Card.click();
-        UserName.sendKeys("jsmith");
-        Account.sendKeys("EBQ24123487654");
-        Amount.sendKeys("1000");
+        UserName.sendKeys(ScenarioData.get("nickname"));
+        Account.sendKeys(ScenarioData.get("account"));
+        wait.until(ExpectedConditions.visibilityOf(Amount));
+        Amount.sendKeys(ScenarioData.get("amount"));
+        wait.until(ExpectedConditions.elementToBeClickable(Continue));
         Continue.click();
+        wait.until(ExpectedConditions.visibilityOf(Confirm));
         Confirm.click();
+        wait.until(ExpectedConditions.visibilityOf(popup));
     }
 }
+

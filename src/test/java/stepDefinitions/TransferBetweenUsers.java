@@ -28,10 +28,10 @@ public class TransferBetweenUsers {
     }
     @Then("Customer should be successfully transfers money")
 
-    public void customer_should_be_successfully_transfers_money() {
+    public void customer_should_be_successfully_transfers_money() throws InterruptedException {
         String expected = "Back to transfers";
+        Thread.sleep(3000);
         String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
-
         assertEquals(expected, actual);
     }
 }
