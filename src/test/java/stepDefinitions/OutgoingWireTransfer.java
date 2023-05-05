@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.Given;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -24,6 +24,7 @@ public class OutgoingWireTransfer {
         logIn.openHomePage();
         Thread.sleep(2000);
         logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
+        Thread.sleep(3000);
         transfer.OutgoingWireTransfer();
 
     }

@@ -1,6 +1,6 @@
 package pageObjectModel;
 
-import org.checkerframework.checker.units.qual.C;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.ScenarioData;
 
 import java.time.Duration;
-import java.util.Currency;
+
 
 public class OutgoingWireTransferPage {
 
@@ -22,7 +22,7 @@ public class OutgoingWireTransferPage {
     @FindBy(css = ".transfer")
     WebElement Transfers;
 
-    @FindBy(xpath = "//*[contains(text(), \"Outgoing Wire Transfer\")]")
+    @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
     WebElement OutgoingWireTransferPage;
 
     @FindBy(xpath = "//*[@ng-reflect-placeholder-text='Select account']")
@@ -134,7 +134,6 @@ public class OutgoingWireTransferPage {
     }
 
     public void OutgoingWireTransfer() throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(Transfers));
         Transfers.click();
         wait.until(ExpectedConditions.visibilityOf(OutgoingWireTransferPage));
         OutgoingWireTransferPage.click();
