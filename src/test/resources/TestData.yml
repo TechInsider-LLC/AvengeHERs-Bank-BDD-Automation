@@ -9,7 +9,7 @@ Transfer Between Users:
   account: "EBQ24123487654"
   nickname: "jsmith"
 
-Wire Transfer:
+Outgoing Wire Transfer:
   username: "demo-user"
   password: "Demo-Access1"
   SWIFTBIC: "SMCOGB2L"

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import pageObjectModel.LogInPage;
 import pageObjectModel.OutgoingWireTransferPage;
 import utility.Hooks;
+import utility.ScenarioData;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +23,7 @@ public class OutgoingWireTransfer {
     public void user_initiates_an_outgoing_wire_transfer() throws InterruptedException {
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with("demo-user","Demo-Access1");
+        logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
         transfer.OutgoingWireTransfer();
 
     }

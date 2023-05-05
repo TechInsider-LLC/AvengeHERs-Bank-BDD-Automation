@@ -21,7 +21,7 @@ public class TransferBetweenUsers {
     public void user_transfers_money() throws InterruptedException {
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
+        logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
         Thread.sleep(5000);
         transfer.TransferBetweenUsers();
 

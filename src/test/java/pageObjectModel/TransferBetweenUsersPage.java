@@ -15,7 +15,7 @@ public class TransferBetweenUsersPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    @FindBy(css =".transfer")
+    @FindBy(css = ".transfer")
     WebElement Transfers;
 
     @FindBy(css = "[ng-reflect-router-link=\"transfer-between-users\"]")
@@ -54,7 +54,6 @@ public class TransferBetweenUsersPage {
 
     public void TransferBetweenUsers() throws InterruptedException {
         Transfers.click();
-        Thread.sleep(2000);
         wait.until(ExpectedConditions.visibilityOf(TransferBetweenUsers));
         TransferBetweenUsers.click();
         wait.until(ExpectedConditions.visibilityOf(DebitForm));

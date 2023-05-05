@@ -18,10 +18,11 @@ public class OutgoingWireTransferPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    @FindBy(xpath = "//*[@ng-reflect-router-link=\"/transfer\"]")
+
+    @FindBy(xpath = "//*[contains(text(), \"Transfers\")]")
     WebElement Transfers;
 
-    @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
+    @FindBy(xpath = "//*[contains(text(), \"Outgoing Wire Transfer\")]")
     WebElement OutgoingWireTransferPage;
 
     @FindBy(xpath = "//*[@ng-reflect-placeholder-text='Select account']")
