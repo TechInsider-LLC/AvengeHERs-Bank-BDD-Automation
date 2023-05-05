@@ -14,3 +14,10 @@ Wire Transfer:
   password: "Demo-Access1"
   amount: "500"
 
+  Transfer Between Account:
+
+    username: "demo-user"
+    password: "Demo-Access1"
+    amount: "10000"
+    Checking: "EBQ11113487654"
+    Savings: "EBQ11223487456"
