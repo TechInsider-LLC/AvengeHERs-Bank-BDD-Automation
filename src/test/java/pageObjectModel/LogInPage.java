@@ -26,7 +26,8 @@ public class LogInPage {
 
     public void openHomePage(){driver.get("https://demo.ebanq.com/");}
 
-    public void with(String userName,String password){
+    public void with(String userName,String password) throws InterruptedException {
+        Thread.sleep(2000);
         UsernameEmail.sendKeys(userName);
         Password.sendKeys(password);
         SignIn.click();
