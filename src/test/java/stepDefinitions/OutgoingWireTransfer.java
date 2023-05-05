@@ -35,7 +35,7 @@ public class OutgoingWireTransfer {
 
     }
     @Then("Customer should be successfully outgoing wire transfer")
-    public void customer_should_be_successfully_outgoing_wire_transfer() throws InterruptedException {
+    public void customer_should_be_successfully_outgoing_wire_transfer(){
         String expected = "Back to transfers";
         WebElement message = driver.findElement(By.cssSelector(".text_color-main_color"));
         wait.until(ExpectedConditions.textToBePresentInElement(message, expected));
