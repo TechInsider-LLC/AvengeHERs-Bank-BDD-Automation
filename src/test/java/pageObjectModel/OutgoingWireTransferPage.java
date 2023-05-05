@@ -19,7 +19,7 @@ public class OutgoingWireTransferPage {
     WebDriverWait wait;
 
 
-    @FindBy(xpath = "//*[contains(text(), \"Transfers\")]")
+    @FindBy(css = ".transfer")
     WebElement Transfers;
 
     @FindBy(xpath = "//*[contains(text(), \"Outgoing Wire Transfer\")]")
