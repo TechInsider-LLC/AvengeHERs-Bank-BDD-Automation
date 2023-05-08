@@ -20,7 +20,7 @@ public class OutgoingWireTransferPage {
     WebDriverWait wait;
 
 
-    @FindBy(xpath =" //*[contains(text(),\"Transfers\")]")
+    @FindBy(css ="[routerlink=\"/transfer\"]")
     WebElement Transfers;
 
     @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
@@ -86,8 +86,10 @@ public class OutgoingWireTransferPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void OutgoingWireTransfer() throws InterruptedException {
+    public void OutgoingWireTransfer() {
         wait.until(ExpectedConditions.elementToBeClickable(Transfers));
+        By overlayLocator = By.cssSelector("div.overlay");
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(overlayLocator));
         Transfers.click();
         wait.until(ExpectedConditions.visibilityOf(OutgoingWireTransferPage));
         OutgoingWireTransferPage.click();
