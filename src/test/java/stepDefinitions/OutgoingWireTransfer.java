@@ -28,9 +28,8 @@ public class OutgoingWireTransfer {
     @When("User initiates an outgoing wire transfer")
     public void user_initiates_an_outgoing_wire_transfer() throws InterruptedException {
         logIn.openHomePage();
-        Thread.sleep(2000);
         logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".transfer")));
         transfer.OutgoingWireTransfer();
 
     }
@@ -43,5 +42,4 @@ public class OutgoingWireTransfer {
         assertEquals(expected, actual);
 
     }
-
 }

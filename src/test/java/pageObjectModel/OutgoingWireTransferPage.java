@@ -1,6 +1,7 @@
 package pageObjectModel;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ public class OutgoingWireTransferPage {
     WebDriverWait wait;
 
 
-    @FindBy(css = ".transfer")
+    @FindBy(xpath =" //*[contains(text(),\"Transfers\")]")
     WebElement Transfers;
 
     @FindBy(xpath = "//*[@ng-reflect-router-link='outgoing-wire-transfer']")
@@ -86,6 +87,7 @@ public class OutgoingWireTransferPage {
     }
 
     public void OutgoingWireTransfer() throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(Transfers));
         Transfers.click();
         wait.until(ExpectedConditions.visibilityOf(OutgoingWireTransferPage));
         OutgoingWireTransferPage.click();
