@@ -1,12 +1,11 @@
 package pageObjectModel;
 
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import stepDefinitions.TransferBetweenAccounts1;
+import stepDefinitions.TransferBetweenAccounts;
 import utility.Hooks;
 import utility.ScenarioData;
 
@@ -14,11 +13,11 @@ import utility.ScenarioData;
 
 import static org.junit.Assert.assertEquals;
 
-public class TransferBetweenAccounts {
+public class TransferBetweenAccountsPage {
 
     WebDriver driver = Hooks.getDriver();
     LogInPage logIn = new LogInPage(Hooks.getDriver());
-    TransferBetweenAccounts1 transfer = new TransferBetweenAccounts1(driver);
+    TransferBetweenAccounts transfer = new TransferBetweenAccounts(driver);
 
 
 
@@ -27,7 +26,7 @@ public class TransferBetweenAccounts {
 
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
+         logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
         Thread.sleep(2000);
         transfer.TransferBetweenAccounts();
 

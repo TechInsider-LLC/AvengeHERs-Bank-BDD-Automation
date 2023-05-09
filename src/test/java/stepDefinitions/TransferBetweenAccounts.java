@@ -12,11 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.ScenarioData;
 
 import java.time.Duration;
-import java.time.Instant;
 
-import static java.time.Duration.*;
-
-public class TransferBetweenAccounts1 {
+public class TransferBetweenAccounts {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -53,7 +50,7 @@ public class TransferBetweenAccounts1 {
   @FindBy(css = ".popup-message")
   WebElement popup;
 
- public TransferBetweenAccounts1(WebDriver driver){
+ public TransferBetweenAccounts(WebDriver driver){
    this.driver = driver;
    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
    PageFactory.initElements(driver,this);
