@@ -86,10 +86,10 @@ public class OutgoingWireTransferPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void OutgoingWireTransfer() {
-        wait.until(ExpectedConditions.elementToBeClickable(Transfers));
-        By overlayLocator = By.cssSelector("div.overlay");
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(overlayLocator));
+    public void OutgoingWireTransfer() throws InterruptedException {
+//        wait.until(ExpectedConditions.elementToBeClickable(Transfers));
+//        By overlayLocator = By.cssSelector("div.overlay");
+//        wait.until(ExpectedConditions.invisibilityOfElementLocated(overlayLocator));
         Transfers.click();
         wait.until(ExpectedConditions.visibilityOf(OutgoingWireTransferPage));
         OutgoingWireTransferPage.click();

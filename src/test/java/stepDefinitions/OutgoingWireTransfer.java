@@ -29,6 +29,7 @@ public class OutgoingWireTransfer {
     public void user_initiates_an_outgoing_wire_transfer() throws InterruptedException {
         logIn.openHomePage();
         logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
+        Thread.sleep(2000);
         transfer.OutgoingWireTransfer();
 
     }

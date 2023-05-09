@@ -1,4 +1,4 @@
-@regression
+  @regression
 Feature: Outgoing Wire Transfer
 
   Scenario: Outgoing Wire Transfer
