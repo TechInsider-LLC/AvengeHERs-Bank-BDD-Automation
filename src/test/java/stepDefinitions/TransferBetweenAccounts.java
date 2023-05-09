@@ -1,79 +1,49 @@
 package stepDefinitions;
 
 
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import pageObjectModel.LogInPage;
+import pageObjectModel.TransferBetweenAccountsPage;
+import utility.Hooks;
 import utility.ScenarioData;
 
-import java.time.Duration;
+
+
+import static org.junit.Assert.assertEquals;
 
 public class TransferBetweenAccounts {
 
-    WebDriver driver;
-    WebDriverWait wait;
-
-  @FindBy(css = ".transfer")
-  WebElement Transfers;
-
-  @FindBy(css = ".section__heading")
-    WebElement TransferBetweenAccounts;
-
-  @FindBy(css = ".ng-value-container")
-    WebElement DebitFrom;
-  @FindBy(css = ".select-value")
-  WebElement selectvalue;
-
-  @FindBy(css = ".EBQ11113487654")
-  WebElement Checking;
-
-  @FindBy(css = ".ng-value-container")
-  WebElement CreditTo;
-
-  @FindBy(css = ".EBQ11223487456")
-  WebElement Savings;
-
-  @FindBy(css = ".native-input amount ng-pristine ng-invalid with-currency ng-touched")
-  WebElement AmountToTransfer;
-
-  @FindBy(xpath = "//*[@type='submit']")
-  WebElement Continue;
-
-  @FindBy(xpath = "//button[contains(text(), \"Confirm\")]")
-  WebElement Confirm;
-
-  @FindBy(css = ".popup-message")
-  WebElement popup;
-
- public TransferBetweenAccounts(WebDriver driver){
-   this.driver = driver;
-   wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-   PageFactory.initElements(driver,this);
- }
-
-
-  public void TransferBetweenAccounts() throws InterruptedException {
-
-
-    Transfers.click();
-    Thread.sleep(2000);
-    wait.until(ExpectedConditions.visibilityOf(TransferBetweenAccounts));
-    TransferBetweenAccounts.click();
-    wait.until(ExpectedConditions.visibilityOf(DebitFrom));
-    DebitFrom.click();
+    WebDriver driver = Hooks.getDriver();
+    LogInPage logIn = new LogInPage(Hooks.getDriver());
+    TransferBetweenAccountsPage transfer = new TransferBetweenAccountsPage(driver);
 
 
 
-    Checking.sendKeys(ScenarioData.get("Checking"));
-    CreditTo.click();
-    Savings.sendKeys(ScenarioData.get("Savings"));
-    AmountToTransfer.sendKeys(ScenarioData.get("amount"));
-    Continue.click();
-    Confirm.click();
-  }
+    @When("User transfers between accounts")
+    public void user_transfers_money() throws InterruptedException {
+
+        logIn.openHomePage();
+        Thread.sleep(2000);
+         logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
+        Thread.sleep(2000);
+        transfer.TransferBetweenAccounts();
+
+    }
+
+
+
+    @Then("User have to transfer successfully")
+    public void user_have_to_transfer_successfully() {
+        String expected = "Back to transfers.";
+        String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
+        assertEquals(expected, actual);
+
+    }
 }
+
+
+
+
