@@ -14,8 +14,7 @@ Wire Transfer:
   password: "Demo-Access1"
   amount: "500"
 
-  Transfer Between Accounts:
-
+Transfer Between Accounts:
   username: "demo-user"
   password: "Demo-Access1"
   amount: "10000"
