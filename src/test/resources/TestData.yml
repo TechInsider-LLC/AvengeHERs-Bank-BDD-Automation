@@ -9,8 +9,15 @@ Transfer Between Users:
   account: "EBQ24123487654"
   nickname: "jsmith"
 
-Wire Transfer:
+Outgoing Wire Transfer:
   username: "demo-user"
   password: "Demo-Access1"
+  SWIFTBIC: "SMCOGB2L"
+  nickname: "Jane"
+  address: "2009 85th Str. Apt.2"
+  city: "Brooklyn"
+  state: "New York"
+  accountNumber: "AL35202111090000000001234567"
+  message: "Invoice Payment #1234"
   amount: "500"
 

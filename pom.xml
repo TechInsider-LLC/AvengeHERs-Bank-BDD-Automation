@@ -72,7 +72,6 @@
             <version>4.9.0</version>
         </dependency>
 
-
         <!-- SnakeYAML -->
         <dependency>
             <groupId>org.yaml</groupId>

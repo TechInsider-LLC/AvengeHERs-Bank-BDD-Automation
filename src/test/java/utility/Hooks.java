@@ -15,25 +15,21 @@ public class Hooks {
     private static WebDriver driver;
 
     public static WebDriver getDriver(){
-
         return driver;
     }
 
     @Before
     public void setUp(){
-
-
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
-
     }
 
     @After
     public void tearDown() throws InterruptedException {
+        Thread.sleep(5000);
         driver.quit();
-    }
+   }
 }
 
