@@ -45,8 +45,11 @@ public class OutgoingWireTransfer {
         String actual = message.getText();
         assertEquals(expected, actual);
 
+//        String id = driver.findElement();
+//        String manipulation to get the request ID
 
-        given()
+//        1. Login for token
+        String token = given()
                 .contentType(ContentType.JSON)
                 .body("{\n" +
                         "    \"data\": {\n" +
@@ -60,21 +63,21 @@ public class OutgoingWireTransfer {
 
         .then()
                 .log().all()
-                .statusCode(200);
-
-
-        Integer Data = given()
-                .contentType(ContentType.JSON)
-
-        .when()
-                .log().all()
-                .post("https://api-demo.ebanq.com/accounts/private/v1/admin/requests/execute/69")
-
-        .then()
-                .log().all()
                 .statusCode(200).extract().response().path("data.accessToken");
 
-        System.out.println("executed");
+
+//        2. Approve transaction with token
+//        given()
+//                .contentType(ContentType.JSON)
+//                .header("Authorization", "Bearer "+token)
+//        .when()
+//                .log().all()
+//                .post("https://api-demo.ebanq.com/accounts/private/v1/admin/requests/execute/"+ id)
+//
+//        .then()
+//                .log().all()
+//                .statusCode(200);
+
 
 
 
