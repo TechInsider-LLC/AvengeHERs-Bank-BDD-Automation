@@ -45,7 +45,7 @@ public class OutgoingWireTransfer {
         String actual = message.getText();
         assertEquals(expected, actual);
 
-//        String id = driver.findElement();
+       String id = driver.findElement(By.cssSelector(".success-popup")).getText();
 //        String manipulation to get the request ID
 
 //        1. Login for token
