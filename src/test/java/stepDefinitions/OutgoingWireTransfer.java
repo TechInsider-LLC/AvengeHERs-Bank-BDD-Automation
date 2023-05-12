@@ -46,6 +46,8 @@ public class OutgoingWireTransfer {
         assertEquals(expected, actual);
 
        String id = driver.findElement(By.cssSelector(".success-popup")).getText();
+        //Your request has been sent for approval. Request ID #51
+//        String.split
 //        String manipulation to get the request ID
 
 //        1. Login for token

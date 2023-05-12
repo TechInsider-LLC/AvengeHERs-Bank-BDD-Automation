@@ -99,6 +99,7 @@ public class OutgoingWireTransferPage {
         Card.click();
         wait.until(ExpectedConditions.visibilityOf(SWIFTBIC));
         SWIFTBIC.sendKeys(ScenarioData.get("SWIFTBIC"));
+        Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOf(CustomerName));
         CustomerName.sendKeys(ScenarioData.get("nickname"));
         wait.until(ExpectedConditions.visibilityOf(AddressLine1));
