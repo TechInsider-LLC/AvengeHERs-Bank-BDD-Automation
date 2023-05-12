@@ -28,7 +28,7 @@ public class TransferBetweenAccounts {
         logIn.openHomePage();
         Thread.sleep(2000);
          logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         transfer.TransferBetweenAccounts();
 
     }
@@ -36,8 +36,9 @@ public class TransferBetweenAccounts {
 
 
     @Then("User have to transfer successfully")
-    public void user_have_to_transfer_successfully() {
+    public void user_have_to_transfer_successfully() throws InterruptedException {
         String expected = "Back to transfers.";
+        Thread.sleep(3000);
         String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
         assertEquals(expected, actual);
 

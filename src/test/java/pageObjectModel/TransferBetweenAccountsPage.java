@@ -24,7 +24,7 @@ public class TransferBetweenAccountsPage {
   @FindBy(css = "[ng-reflect-router-link=\"transfer-between-accounts\"]")
     WebElement TransferBetweenAccounts;
 
-  @FindBy(xpath = "//*[@ng-reflect-select-label=\"Debit from\"]")
+  @FindBy(css=".ng-value-container")
     WebElement DebitFrom;
   @FindBy(css = ".ng-option-marked")
   WebElement Checking;
