@@ -38,7 +38,7 @@ public class TransferBetweenAccountsPage {
   @FindBy(css = ".native-input amount ng-pristine ng-invalid with-currency ng-touched")
   WebElement AmountToTransfer;
 
-  @FindBy(xpath = "//*[@type='submit']")
+  @FindBy(xpath = "//*[contains(text(), \"Continue\")]")
   WebElement Continue;
 
   @FindBy(xpath = "//button[contains(text(), \"Confirm\")]")
@@ -76,6 +76,6 @@ public class TransferBetweenAccountsPage {
     wait.until(ExpectedConditions.visibilityOf(Confirm));
     Confirm.click();
     wait.until(ExpectedConditions.visibilityOf(popup));
-    popup.click();
+
   }
 }
