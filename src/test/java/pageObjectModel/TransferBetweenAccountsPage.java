@@ -21,21 +21,18 @@ public class TransferBetweenAccountsPage {
   @FindBy(css = ".transfer")
   WebElement Transfers;
 
-  @FindBy(css = ".section__heading")
+  @FindBy(css = "[ng-reflect-router-link=\"transfer-between-accounts\"]")
     WebElement TransferBetweenAccounts;
 
-  @FindBy(css = ".ng-value-container")
+  @FindBy(xpath = "//*[@ng-reflect-select-label=\"Debit from\"]")
     WebElement DebitFrom;
-  @FindBy(css = ".select-value")
-  WebElement selectvalue;
-
-  @FindBy(css = ".EBQ11113487654")
+  @FindBy(css = ".ng-option-marked")
   WebElement Checking;
 
   @FindBy(css = ".ng-value-container")
   WebElement CreditTo;
 
-  @FindBy(css = ".EBQ11223487456")
+  @FindBy(css = ".ng-option")
   WebElement Savings;
 
   @FindBy(css = ".native-input amount ng-pristine ng-invalid with-currency ng-touched")
@@ -66,14 +63,19 @@ public class TransferBetweenAccountsPage {
     TransferBetweenAccounts.click();
     wait.until(ExpectedConditions.visibilityOf(DebitFrom));
     DebitFrom.click();
-
-
-
-    Checking.sendKeys(ScenarioData.get("Checking"));
+    wait.until(ExpectedConditions.visibilityOf(Checking));
+    Checking.click();
+    wait.until(ExpectedConditions.elementToBeClickable(CreditTo));
     CreditTo.click();
-    Savings.sendKeys(ScenarioData.get("Savings"));
+    wait.until(ExpectedConditions.visibilityOf(Savings));
+    Savings.click();
+    wait.until(ExpectedConditions.visibilityOf(AmountToTransfer));
     AmountToTransfer.sendKeys(ScenarioData.get("amount"));
+    wait.until(ExpectedConditions.elementToBeClickable(Continue));
     Continue.click();
+    wait.until(ExpectedConditions.visibilityOf(Confirm));
     Confirm.click();
+    wait.until(ExpectedConditions.visibilityOf(popup));
+    popup.click();
   }
 }
