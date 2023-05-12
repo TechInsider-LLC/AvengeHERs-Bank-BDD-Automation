@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,7 +28,7 @@ public class TransferBetweenAccountsPage {
 
   @FindBy(css=".ng-value-container")
     WebElement DebitFrom;
-  @FindBy(css = ".ng-option-marked")
+  @FindBy(xpath = "//*[contains(text(), 'EBQ38495629375')]/..")
   WebElement Checking;
 
   @FindBy(xpath = "//*[contains(text(), 'Credit to')]/..")
@@ -64,7 +65,11 @@ public class TransferBetweenAccountsPage {
     TransferBetweenAccounts.click();
     wait.until(ExpectedConditions.visibilityOf(DebitFrom));
     DebitFrom.click();
-    wait.until(ExpectedConditions.visibilityOf(Checking));
+
+    //scroll to the view
+    Actions action = new Actions(driver);
+    action.moveToElement(Checking).perform();
+
     Checking.click();
     Thread.sleep(2000);
     CreditTo.click();
