@@ -42,9 +42,8 @@ public class TransferBetweenAccounts {
 
     @Then("User have to transfer successfully")
     public void user_have_to_transfer_successfully() throws InterruptedException {
-        String expected = "Back to transfers.";
-        WebElement message = driver.findElement(By.cssSelector(".text_color-main_color"));
-        wait.until(ExpectedConditions.textToBePresentInElement(message, expected));
+        String expected = "Back to transfers";
+        WebElement message = driver.findElement(By.xpath("//*[@href=\"/transfer\"]"));
         String actual = message.getText();
         assertEquals(expected, actual);
 
