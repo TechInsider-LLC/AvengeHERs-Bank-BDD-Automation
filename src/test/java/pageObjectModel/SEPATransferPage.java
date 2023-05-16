@@ -1,12 +1,12 @@
 package pageObjectModel;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import stepDefinitions.SEPATransfer;
 import utility.ScenarioData;
 
 import java.time.Duration;
@@ -27,8 +27,8 @@ public class SEPATransferPage {
     @FindBy(css = ".ng-option-marked")
     WebElement Checking;
 
-    @FindBy(xpath = "//*[contains(text(), 'Andorra')]")
-    WebElement Country;
+//   @FindBy(xpath = "//*[contains(text(), 'Andorra')]")
+//    WebElement Country;
 
     @FindBy(css = "#beneficiarybank-acc-iban")
     WebElement IBAN;
@@ -77,22 +77,21 @@ public class SEPATransferPage {
         DebitFrom.click();
         wait.until(ExpectedConditions.visibilityOf(Checking));
         Checking.click();
-        Thread.sleep(3000);
-        wait.until(ExpectedConditions.visibilityOf(Country));
-        Country.click();
+//        wait.until(ExpectedConditions.visibilityOf(Country));
+//        Country.click();
         wait.until(ExpectedConditions.visibilityOf(IBAN));
         IBAN.sendKeys(ScenarioData.get("IBAN"));
         wait.until(ExpectedConditions.visibilityOf(BIC));
         BIC.sendKeys(ScenarioData.get("BIC"));
         wait.until(ExpectedConditions.visibilityOf(BeneficiaryCustomerName));
         BeneficiaryCustomerName.sendKeys(ScenarioData.get("BeneficiaryCustomerName"));
-        wait.until(ExpectedConditions.visibilityOf(RefMessage));
-        RefMessage.sendKeys(ScenarioData.get("RefMassage"));
-        wait.until(ExpectedConditions.visibilityOf(AmountToTransfer));
+        RefMessage.sendKeys(ScenarioData.get("RefMessage"));
         AmountToTransfer.sendKeys(ScenarioData.get("AmountToTransfer"));
-        wait.until(ExpectedConditions.visibilityOf(Continue));
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.elementToBeClickable(Continue));
         Continue.click();
-        wait.until(ExpectedConditions.elementToBeClickable(Confirm));
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOf(Confirm));
         Confirm.click();
         wait.until(ExpectedConditions.visibilityOf(popup));
 
