@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -8,37 +9,47 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
-import pageObjectModel.TransferBetweenUsersPage;
+import pageObjectModel.TransferBetweenAccountsPage;
 import utility.Hooks;
 import utility.ScenarioData;
+
 
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
-public class TransferBetweenUsers {
+public class TransferBetweenAccounts {
 
-    WebDriver driver= Hooks.getDriver();
+    WebDriver driver = Hooks.getDriver();
     LogInPage logIn = new LogInPage(driver);
-    TransferBetweenUsersPage transfer = new TransferBetweenUsersPage(driver);
+    TransferBetweenAccountsPage transfer = new TransferBetweenAccountsPage(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-    @When("User transfers money")
+
+
+    @When("User transfers between accounts")
     public void user_transfers_money() throws InterruptedException {
+
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
+         logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
         Thread.sleep(5000);
-        transfer.TransferBetweenUsers();
+        transfer.TransferBetweenAccounts();
 
     }
-    @Then("Customer should be successfully transfers money")
 
-    public void customer_should_be_successfully_transfers_money() throws InterruptedException {
+
+
+    @Then("User have to transfer successfully")
+    public void user_have_to_transfer_successfully() throws InterruptedException {
         String expected = "Back to transfers";
-        WebElement message = driver.findElement(By.cssSelector(".text_color-main_color"));
-        wait.until(ExpectedConditions.textToBePresentInElement(message, expected));
+        WebElement message = driver.findElement(By.xpath("//*[@href=\"/transfer\"]"));
         String actual = message.getText();
         assertEquals(expected, actual);
+
     }
 }
+
+
+
+

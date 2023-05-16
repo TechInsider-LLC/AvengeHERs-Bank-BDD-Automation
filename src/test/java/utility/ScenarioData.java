@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class ScenarioData {
 
+
     private static Map<String, String> scenariodata;
 
     @Given("Customer has test data for {string}")
@@ -16,4 +17,5 @@ public class ScenarioData {
     public static String get(String key) {
          return scenariodata.get(key);
     }
+
 }

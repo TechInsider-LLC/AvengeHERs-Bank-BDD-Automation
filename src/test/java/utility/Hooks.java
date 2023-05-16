@@ -20,6 +20,7 @@ public class Hooks {
 
     @Before
     public void setUp(){
+
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -28,8 +29,9 @@ public class Hooks {
 
     @After
     public void tearDown() throws InterruptedException {
-        Thread.sleep(5000);
+
         driver.quit();
-   }
+    }
+
 }
 
