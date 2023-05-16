@@ -5,20 +5,25 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import pageObjectModel.TransferBetweenAccountsPage;
 import utility.Hooks;
 import utility.ScenarioData;
 
 
+import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
 public class TransferBetweenAccounts {
 
     WebDriver driver = Hooks.getDriver();
-    LogInPage logIn = new LogInPage(Hooks.getDriver());
+    LogInPage logIn = new LogInPage(driver);
     TransferBetweenAccountsPage transfer = new TransferBetweenAccountsPage(driver);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 
 
@@ -38,8 +43,9 @@ public class TransferBetweenAccounts {
     @Then("User have to transfer successfully")
     public void user_have_to_transfer_successfully() throws InterruptedException {
         String expected = "Back to transfers.";
-        Thread.sleep(3000);
-        String actual = driver.findElement(By.cssSelector(".text_color-main_color")).getText();
+        WebElement message = driver.findElement(By.cssSelector(".text_color-main_color"));
+        wait.until(ExpectedConditions.textToBePresentInElement(message, expected));
+        String actual = message.getText();
         assertEquals(expected, actual);
 
     }

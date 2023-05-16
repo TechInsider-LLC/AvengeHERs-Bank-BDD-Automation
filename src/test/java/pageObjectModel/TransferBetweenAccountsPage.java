@@ -1,6 +1,7 @@
 package pageObjectModel;
 
 
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,10 +35,10 @@ public class TransferBetweenAccountsPage {
   @FindBy(xpath = "//*[contains(text(), 'Credit to')]/..")
   WebElement CreditTo;
 
-  @FindBy(css = ".ng-option")
+  @FindBy(css = ".ng-option-marked")
   WebElement Savings;
 
-  @FindBy(css = ".native-input amount ng-pristine ng-invalid with-currency ng-touched")
+  @FindBy(xpath="//*[@placeholder='0,000.00']")
   WebElement AmountToTransfer;
 
   @FindBy(xpath = "//*[contains(text(), \"Continue\")]")
@@ -72,11 +73,14 @@ public class TransferBetweenAccountsPage {
 
     Checking.click();
     Thread.sleep(2000);
+    wait.until(ExpectedConditions.visibilityOf(CreditTo));
     CreditTo.click();
+//    action.moveToElement(Savings).perform();
     wait.until(ExpectedConditions.visibilityOf(Savings));
     Savings.click();
-    wait.until(ExpectedConditions.visibilityOf(AmountToTransfer));
+
     AmountToTransfer.sendKeys(ScenarioData.get("amount"));
+    Thread.sleep(2000);
     wait.until(ExpectedConditions.elementToBeClickable(Continue));
     Continue.click();
     wait.until(ExpectedConditions.visibilityOf(Confirm));

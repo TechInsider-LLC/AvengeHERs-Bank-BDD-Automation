@@ -17,16 +17,16 @@ Wire Transfer:
 Transfer Between Accounts:
   username: "demo-user"
   password: "Demo-Access1"
-  amount: "10000"
-  Checking: "EBQ11113487654"
+  amount: "100"
+  Checking: "EBQ38495629375"
   Savings: "EBQ11223487456"
 
 SEPA Transfer:
   username: "demo-user"
   password: "Demo-Access1"
-  DebitFrom: EBQ11113487654
-  Country: "Andorra"
-  IBAN: AD1400080001001234567890
-  BIC: BACAADADXXX
-  BeneficiaryCustomerName: Nancy
-  AmountToTransfer: 270
+  DebitFrom: "EBQ11113487654"
+  IBAN: "AD1400080001001234567890"
+  BIC: "BACAADADXXX"
+  BeneficiaryCustomerName: "Nancy"
+  RefMessage: "Invoice Payment #12345"
+  AmountToTransfer: "700"
