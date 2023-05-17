@@ -45,12 +45,9 @@ public class OutgoingWireTransfer {
         String actual = message.getText();
         assertEquals(expected, actual);
 
-       String id = driver.findElement(By.cssSelector(".success-popup")).getText();
-        //Your request has been sent for approval. Request ID #51
-//        String.split
-//        String manipulation to get the request ID
+       String id = driver.findElement(By.cssSelector(".success-popup")).getText().split("#")[1].split("\n")[0];
 
-//        1. Login for token
+ //       1. Login for token
         String token = given()
                 .contentType(ContentType.JSON)
                 .body("{\n" +
@@ -69,16 +66,16 @@ public class OutgoingWireTransfer {
 
 
 //        2. Approve transaction with token
-//        given()
-//                .contentType(ContentType.JSON)
-//                .header("Authorization", "Bearer "+token)
-//        .when()
-//                .log().all()
-//                .post("https://api-demo.ebanq.com/accounts/private/v1/admin/requests/execute/"+ id)
-//
-//        .then()
-//                .log().all()
-//                .statusCode(200);
+       given()
+               .contentType(ContentType.JSON)
+                .header ("Authorization", "Bearer "+token)
+        .when()
+               .log().all()
+                .post("https://api-demo.ebanq.com/accounts/private/v1/admin/requests/execute/"+ id)
+
+       .then()
+                .log().all()
+                .statusCode(200);
 
 
 
