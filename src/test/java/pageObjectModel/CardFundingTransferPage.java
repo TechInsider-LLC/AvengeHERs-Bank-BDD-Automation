@@ -28,13 +28,13 @@ public class CardFundingTransferPage {
     @FindBy(css = ".ng-option-marked")
     WebElement Card;
 
-    @FindBy(xpath = "//*[@ng-reflect-placeholder-text=\"Select card\"]")
+    @FindBy(xpath = "//*[contains(text(),\"Credit to\")]")
     WebElement credit;
 
-    @FindBy(css = ".ng-option-marked")
+    @FindBy(xpath = "//*[contains(text(), \"**** **** **** 9089\")]")
     WebElement CreditCard;
 
-    @FindBy (xpath = "//*[@placeholder=\"0,000.00\"]")
+    @FindBy (xpath = "//*[@ng-reflect-name=\"outgoingAmount\"]")
     WebElement amount;
 
     @FindBy(xpath="//*[contains(text(), \"Continue\")]")
@@ -61,13 +61,16 @@ public class CardFundingTransferPage {
         cft.click();
         debit.click();
         Card.click();
-        wait.until(ExpectedConditions.visibilityOf(credit));
-         CreditCard.click();
-        amount.sendKeys(ScenarioData.get("amount"));
+        credit.click();
+        Thread.sleep(4000);
+        CreditCard.click();
+        Thread.sleep(3000);
+        amount.clear();
+        amount.sendKeys("150");
         wait.until(ExpectedConditions.elementToBeClickable(Continue));
         Continue.click();
+        wait.until(ExpectedConditions.elementToBeClickable(Confirm));
         Confirm.click();
-
 
     }
 
