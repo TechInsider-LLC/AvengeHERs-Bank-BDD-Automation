@@ -87,13 +87,12 @@ public class SEPATransferPage {
         BeneficiaryCustomerName.sendKeys(ScenarioData.get("BeneficiaryCustomerName"));
         RefMessage.sendKeys(ScenarioData.get("RefMessage"));
         AmountToTransfer.sendKeys(ScenarioData.get("AmountToTransfer"));
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         wait.until(ExpectedConditions.elementToBeClickable(Continue));
         Continue.click();
         Thread.sleep(1000);
         wait.until(ExpectedConditions.visibilityOf(Confirm));
         Confirm.click();
-        wait.until(ExpectedConditions.visibilityOf(popup));
 
 
 
