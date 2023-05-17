@@ -4,6 +4,8 @@ package stepDefinitions;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
+import io.restassured.http.Cookies;
+import io.restassured.response.Response;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -47,9 +49,10 @@ public class OutgoingWireTransfer {
 
        String id = driver.findElement(By.cssSelector(".success-popup")).getText().split("#")[1].split("\n")[0];
 
+
  //       1. Login for token
-        String token = given()
-                .contentType(ContentType.JSON)
+        Response response =
+               given() .contentType(ContentType.JSON)
                 .body("{\n" +
                         "    \"data\": {\n" +
                         "        \"email\": \"Bank-Admin\",\n" +
@@ -62,12 +65,15 @@ public class OutgoingWireTransfer {
 
         .then()
                 .log().all()
-                .statusCode(200).extract().response().path("data.accessToken");
+                .statusCode(200).extract().response();
+        String token = response.path("data.accessToken");
+        Cookies cookies = response.getDetailedCookies();
 
 
 //        2. Approve transaction with token
        given()
                .contentType(ContentType.JSON)
+               .cookies(cookies)
                 .header ("Authorization", "Bearer "+token)
         .when()
                .log().all()
