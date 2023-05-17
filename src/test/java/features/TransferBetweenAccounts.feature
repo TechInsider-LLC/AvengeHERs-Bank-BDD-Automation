@@ -1,3 +1,4 @@
+@regression
 Feature: Transfer Between Accounts
 
   Scenario: User Transfers between accounts

@@ -1,3 +1,4 @@
+@regression
 Feature:  SEPA Transfer
 
   Scenario:  SEPA transfer
