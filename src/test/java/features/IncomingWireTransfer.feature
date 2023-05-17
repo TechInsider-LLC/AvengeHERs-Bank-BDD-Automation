@@ -1,4 +1,4 @@
-@ regression
+@regression
 
   Feature: Incoming Wire Transfer
     Scenario: Incoming Wire Transfer

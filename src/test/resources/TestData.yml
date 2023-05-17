@@ -50,3 +50,8 @@ SEPA Transfer:
   BeneficiaryCustomerName: "Nancy"
   RefMessage: "Invoice Payment #12345"
   AmountToTransfer: "700"
+
+Incoming Wire Transfer:
+  username: "demo-user"
+  password: "Demo-Access1"
+
