@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,14 +19,14 @@ import utility.ScenarioData;
 import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class OutgoingWireTransfer {
 
     WebDriver driver = Hooks.getDriver();
     LogInPage logIn = new LogInPage(driver);
     OutgoingWireTransferPage transfer = new OutgoingWireTransferPage(driver);
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 
     @When("User initiates an outgoing wire transfer")

@@ -15,7 +15,7 @@ import utility.TestDataLoader;
 import java.time.Duration;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class LogIn {
 

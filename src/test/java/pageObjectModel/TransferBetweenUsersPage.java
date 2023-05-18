@@ -47,7 +47,7 @@ public class TransferBetweenUsersPage {
 
     public TransferBetweenUsersPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 

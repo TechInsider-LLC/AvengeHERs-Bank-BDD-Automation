@@ -14,14 +14,14 @@ import utility.ScenarioData;
 
 import java.time.Duration;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class TransferBetweenUsers {
 
     WebDriver driver= Hooks.getDriver();
     LogInPage logIn = new LogInPage(driver);
     TransferBetweenUsersPage transfer = new TransferBetweenUsersPage(driver);
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @When("User transfers money")
     public void user_transfers_money() throws InterruptedException {

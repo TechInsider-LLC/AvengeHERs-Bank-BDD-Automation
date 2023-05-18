@@ -1,23 +1,23 @@
-userName: YOUR_USERNAME
-accessKey: YOUR_ACCESS_KEY
-framework: junit4
+userName: "raccoonbest_JSBb2y"
+accessKey: "8Tt49MbaJ8w9TaMtNveA"
+framework: "junit4"
 platforms:
-  - os: Windows
-    osVersion: 11
-    browserName: Chrome
-    browserVersion: 103.0
-  - os: Windows
-    osVersion: 10
-    browserName: Firefox
-    browserVersion: 102.0
-  - os: OS X
-    osVersion: Big Sur
-    browserName: Safari
-    browserVersion: 14.1
-browserstackLocal: true
-buildName: bstack-demo
-buildIdentifier: ${BUILD_NUMBER}
-projectName: BrowserStack Sample
-debug: true
-networkLogs: true
-consoleLogs: info
+  - os: "Windows"
+    osVersion: "11"
+    browserName: "Chrome"
+    browserVersion: "103.0"
+  - os: "Windows"
+    osVersion: "10"
+    browserName: "Firefox"
+    browserVersion: "102.0"
+  - os: "OS X"
+    osVersion: "Big Sur"
+    browserName: "Safari"
+    browserVersion: "14.1"
+browserstackLocal: "true"
+buildName: "regression"
+buildIdentifier: "${DATE_TIME}"
+projectName: "AvengeHers"
+debug: "true"
+networkLogs: "true"
+consoleLogs: "info"

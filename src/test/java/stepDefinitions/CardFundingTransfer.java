@@ -10,7 +10,7 @@ import pageObjectModel.OutgoingWireTransferPage;
 import utility.Hooks;
 import utility.ScenarioData;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class CardFundingTransfer {
 
@@ -27,7 +27,8 @@ public class CardFundingTransfer {
         transfer.CardFundingTransferPage();
 
 
-    }@Then("Customer should be successfully Card Funding Transfer")
+    }
+    @Then("Customer should be successfully Card Funding Transfer")
     public void customer_should_be_successfully_card_funding_transfer() throws InterruptedException {
         String expected = "Back to transfers";
         Thread.sleep(3000);
