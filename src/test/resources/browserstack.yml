@@ -1,5 +1,3 @@
-userName: YOUR_USERNAME
-accessKey: YOUR_ACCESS_KEY
 framework: junit4
 platforms:
   - os: Windows
@@ -14,10 +12,10 @@ platforms:
     osVersion: Big Sur
     browserName: Safari
     browserVersion: 14.1
-browserstackLocal: true
-buildName: bstack-demo
-buildIdentifier: ${BUILD_NUMBER}
-projectName: BrowserStack Sample
+browserstackLocal: false
+buildName: regression
+buildIdentifier: ${DATE_TIME}
+projectName: AvengeHers
 debug: true
 networkLogs: true
 consoleLogs: info
