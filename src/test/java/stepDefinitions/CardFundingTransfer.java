@@ -35,5 +35,4 @@ public class CardFundingTransfer {
         assertEquals(expected, actual);
 
     }
-
 }
