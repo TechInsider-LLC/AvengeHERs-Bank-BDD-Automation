@@ -55,9 +55,10 @@ Incoming Wire Transfer:
   username: "demo-user"
   password: "Demo-Access1"
 
-Update First Name:
+UpdateFirstName:
   username: "demo-user"
   password: "Demo-Access1"
-
+  firsName: "Max"
+  firstName: "John"
 
 

@@ -21,18 +21,28 @@ public class UpdateFirstName {
     @When("Customer changes First Name")
     public void customer_changes_first_name() throws InterruptedException {
         logIn.openHomePage();
-        logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
+        logIn.with(ScenarioData.get("username"),ScenarioData.get("password"));
         Thread.sleep(3000);
         name.UpdateFirstNamePage();
 
     }
     @Then("First Name should be updated successfully")
     public void first_name_should_be_updated_successfully() {
-        String expected = "Full Name Jack Doe";
+        String expected = "Full Name Max Doe";
         String actual = driver.findElement(By.xpath("//*[contains(text(), \"Full Name \")]")).getText();
         assertEquals(expected, actual);
+    }
 
+    @When("Customer changes back First Name")
+    public void customer_changes_back_first_name() {
 
     }
 
+    @Then("First name Should be changed back successful")
+    public void first_name_should_be_changed_back_successful() {
+        String expected = "Full Name John Doe";
+        String actual = driver.findElement(By.xpath("//*[contains(text(), \"Full Name \")]")).getText();
+        assertEquals(expected, actual);
+
+    }
 }

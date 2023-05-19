@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utility.ScenarioData;
 
 public class UpdateFirstNamePage {
 
@@ -38,10 +39,14 @@ public class UpdateFirstNamePage {
             editProfile.click();
             firsName.click();
             firsName.clear();
-            firsName.sendKeys("Jack");
+            firsName.sendKeys(ScenarioData.get("firsName"));
             updateProfile.click();
             summary.click();
-
+            editProfile.click();
+            firsName.click();
+            firsName.clear();
+            firsName.sendKeys(ScenarioData.get("firsName"));
+            summary.click();
         }
 
     }
