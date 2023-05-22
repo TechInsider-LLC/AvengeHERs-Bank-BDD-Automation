@@ -21,13 +21,6 @@ Outgoing Wire Transfer:
   message: "Invoice Payment #1234"
   amount: "151"
 
-Transfer Between Accounts:
-  username: "demo-user"
-  password: "Demo-Access1"
-  amount: "10000"
-  Checking: "EBQ11113487654"
-  Savings: "EBQ11223487456"
-
 Card Funding Transfer:
   username: "demo-user"
   password: "Demo-Access1"
@@ -55,10 +48,10 @@ Incoming Wire Transfer:
   username: "demo-user"
   password: "Demo-Access1"
 
-UpdateFirstName:
+Update First Name:
   username: "demo-user"
   password: "Demo-Access1"
-  firsName: "Max"
-  firstName: "John"
+  newFirstName: "Max"
+  oldFirstName: "John"
 
 
