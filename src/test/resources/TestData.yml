@@ -34,13 +34,6 @@ Card Funding Transfer:
   amount: "23"
 
 
-Transfer Between Accounts:
-  username: "demo-user"
-  password: "Demo-Access1"
-  amount: "100"
-  Checking: "EBQ38495629375"
-  Savings: "EBQ11223487456"
-
 SEPA Transfer:
   username: "demo-user"
   password: "Demo-Access1"
