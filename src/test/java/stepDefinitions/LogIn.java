@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import utility.Hooks;
 import utility.ScenarioData;
+import utility.ScenarioDataMongoDB;
 import utility.TestDataLoader;
 
 import java.time.Duration;
@@ -30,7 +31,7 @@ public class LogIn {
 
         logIn.openHomePage();
         Thread.sleep(2000);
-        logIn.with(ScenarioData.get("username"), ScenarioData.get("password"));
+        logIn.with(ScenarioDataMongoDB.get("username"), ScenarioDataMongoDB.get("password"));
     }
 
     @Then("Customer should be successfully logged in")
