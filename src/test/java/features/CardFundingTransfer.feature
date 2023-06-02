@@ -1,4 +1,4 @@
-@regression
+@regression @smoke
 
 Feature: Card Funding Transfer
   Scenario: Card Funding Transfer

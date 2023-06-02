@@ -10,11 +10,7 @@ import utility.ScenarioData;
 
 import java.time.Duration;
 
-public class CardFundingTransferPage {
-
-    WebDriver driver;
-    WebDriverWait wait;
-
+public class CardFundingTransferPage extends BasePage{
 
     @FindBy(css ="[routerlink=\"/transfer\"]")
     WebElement Transfers;
@@ -49,8 +45,7 @@ public class CardFundingTransferPage {
 
 
     public CardFundingTransferPage (WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

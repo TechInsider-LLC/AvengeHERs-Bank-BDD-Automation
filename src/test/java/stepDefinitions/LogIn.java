@@ -27,8 +27,6 @@ public class LogIn {
 
     @When("Customer logs in")
     public void customer_logs_in() throws InterruptedException {
-
-
         logIn.openHomePage();
         Thread.sleep(2000);
         logIn.with(ScenarioDataMongoDB.get("username"), ScenarioDataMongoDB.get("password"));

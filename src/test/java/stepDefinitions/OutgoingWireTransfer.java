@@ -28,6 +28,7 @@ public class OutgoingWireTransfer {
     LogInPage logIn = new LogInPage(driver);
     OutgoingWireTransferPage transfer = new OutgoingWireTransferPage(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    String id;
 
 
     @When("User initiates an outgoing wire transfer")
@@ -47,50 +48,47 @@ public class OutgoingWireTransfer {
         String actual = message.getText();
         assertEquals(expected, actual);
 
-       String id = driver.findElement(By.cssSelector(".success-popup")).getText().split("#")[1].split("\n")[0];
+       id = driver.findElement(By.cssSelector(".success-popup")).getText().split("#")[1].split("\n")[0];
 
 
- //       1. Login for token
+
+    }
+
+    @When("Agent approves the transaction")
+    public void agent_approves_the_transaction() {
+        //       1. Login for token
         Response response =
-               given() .contentType(ContentType.JSON)
-                .body("{\n" +
-                        "    \"data\": {\n" +
-                        "        \"email\": \"Bank-Admin\",\n" +
-                        "        \"password\": \"Demo-Access1\"\n" +
-                        "    }\n" +
-                        "}")
-        .when()
-                .log().all()
-                .post("https://api-demo.ebanq.com/users/public/v1/auth/signin")
+                given() .contentType(ContentType.JSON)
+                        .body("{\n" +
+                                "    \"data\": {\n" +
+                                "        \"email\": \"Bank-Admin\",\n" +
+                                "        \"password\": \"Demo-Access1\"\n" +
+                                "    }\n" +
+                                "}")
+                        .when()
+                        .log().all()
+                        .post("https://api-demo.ebanq.com/users/public/v1/auth/signin")
 
-        .then()
-                .log().all()
-                .statusCode(200).extract().response();
+                        .then()
+                        .log().all()
+                        .statusCode(200).extract().response();
         String token = response.path("data.accessToken");
         Cookies cookies = response.getDetailedCookies();
 
 
 //        2. Approve transaction with token
-       given()
-               .contentType(ContentType.JSON)
-               .cookies(cookies)
+        given()
+                .contentType(ContentType.JSON)
+                .cookies(cookies)
                 .header ("Authorization", "Bearer "+token)
-        .when()
-               .log().all()
+                .when()
+                .log().all()
                 .post("https://api-demo.ebanq.com/accounts/private/v1/admin/requests/execute/"+ id)
 
-       .then()
+                .then()
                 .log().all()
                 .statusCode(200);
 
 
-
-
-
-
-
-
-
-
-        }
     }
+}
