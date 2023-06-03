@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,17 +13,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import pageObjectModel.OutgoingWireTransferPage;
-import utility.Hooks;
+import utility.TestRunner;
 import utility.ScenarioData;
 
 import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class OutgoingWireTransfer {
 
-    WebDriver driver = Hooks.getDriver();
+    WebDriver driver = TestRunner.getDriver();
     LogInPage logIn = new LogInPage(driver);
     OutgoingWireTransferPage transfer = new OutgoingWireTransferPage(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
