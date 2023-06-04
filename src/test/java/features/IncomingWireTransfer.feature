@@ -1,4 +1,4 @@
-@regression @smoke
+@regression @smoke @incoming_wire_transfer
 
   Feature: Incoming Wire Transfer
     Scenario: Incoming Wire Transfer
