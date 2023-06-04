@@ -25,13 +25,15 @@ public class Hooks {
 
     @Before
     public void setUp(){
-        System.out.println("Before Hook");
-        WebDriverManager.firefoxdriver().setup();
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().maximize();
+        if (isTestngTest()) {
+            WebDriverManager.firefoxdriver().setup();
+            WebDriver driver = new FirefoxDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.manage().window().maximize();
 
-        WebDriverHelper.setDriver(driver);
+            WebDriverHelper.setDriver(driver);
+        }
+
     }
 
     @After
@@ -41,6 +43,16 @@ public class Hooks {
         if(driver != null){
             driver.quit();
         }
+
+    }
+
+    public static boolean isTestngTest() {
+        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+            if (element.getClassName().startsWith("org.testng.runner")) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

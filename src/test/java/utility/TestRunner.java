@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.*;
 import org.yaml.snakeyaml.Yaml;
@@ -42,7 +43,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     private Config config;
 
     @Parameters({"browser", "isRemote"})
-    @BeforeTest
+    @BeforeMethod
     public void setUp(String browser, @Optional("false") Boolean isRemote) throws MalformedURLException {
         if (isRemote) {
             setUpRemoteDriver(browser);
@@ -52,9 +53,10 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     }
 
     private void setUpLocalDriver(String browser) {
-        if (browser.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            WebDriver driver = new ChromeDriver();
+        if (browser.equalsIgnoreCase("safari")) {
+            WebDriverManager.safaridriver().setup();
+            SafariOptions options = new SafariOptions();
+            WebDriver driver = new SafariDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             driver.manage().window().maximize();
             WebDriverHelper.setDriver(driver);
@@ -105,12 +107,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         return options;
     }
 
-
-
-
-
-
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         WebDriver driver = WebDriverHelper.getDriver();
 
