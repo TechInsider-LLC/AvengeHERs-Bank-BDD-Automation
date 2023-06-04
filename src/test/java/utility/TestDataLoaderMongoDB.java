@@ -11,7 +11,7 @@ public class TestDataLoaderMongoDB {
     public static final Map<String, Map<String,String>> testData;
 
     static {
-        MongoClient mongoClient = MongoClients.create("mongodb://mongoadmin:secretmongo@0.tcp.ngrok.io:12760/");
+        MongoClient mongoClient = MongoClients.create("mongodb://testdatauser:password@7.tcp.ngrok.io:20788/test-data");
         MongoDatabase database = mongoClient.getDatabase("test-data");
         MongoCollection<Document> collection = database.getCollection("stage-test-data");
 
