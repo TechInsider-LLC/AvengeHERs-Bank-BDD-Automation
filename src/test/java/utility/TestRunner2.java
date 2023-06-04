@@ -1,7 +1,5 @@
 package utility;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -16,8 +14,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,13 +25,12 @@ import java.util.Map;
         features = {"src/test/java/features"},
         glue = {"stepDefinitions", "utility"},
         tags = "@smoke",
-        plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json"}
+        plugin = {"pretty", "html:target/cucumber-reports.html"}
 )
-
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class TestRunner2 extends AbstractTestNGCucumberTests {
 
     private static WebDriver driver;
-    private Config config;
+    private static Map<String, Object> config;
 
     @Parameters({"browser", "isRemote"})
     @BeforeTest
@@ -58,39 +53,36 @@ public class TestRunner extends AbstractTestNGCucumberTests {
         loadConfig();
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = loadChromeOptions();
-            driver = new RemoteWebDriver(new URL(config.getUrl()), options);
+            driver = new RemoteWebDriver(new URL((String) config.get("url")), options);
         } else if (browser.equalsIgnoreCase("safari")) {
             SafariOptions options = loadSafariOptions();
-            driver = new RemoteWebDriver(new URL(config.getUrl()), options);
+            driver = new RemoteWebDriver(new URL((String) config.get("url")), options);
         }
     }
 
     private void loadConfig() {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        try {
-            config = mapper.readValue(new File("src/test/resources/saucelabsconfig.yml"), Config.class);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load saucelabsconfig.yml", e);
-        }
+        Yaml yaml = new Yaml();
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("saucelabsconfig.yml");
+        config = yaml.load(inputStream);
     }
 
     private ChromeOptions loadChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-        options.setPlatformName(config.getChromeOptions().getPlatformName());
-        options.setBrowserVersion(config.getChromeOptions().getBrowserVersion());
-        options.setCapability("sauce:options", config.getChromeSauceOptions());
+        options.setPlatformName((String) ((Map) config.get("chromeOptions")).get("platformName"));
+        options.setBrowserVersion((String) ((Map) config.get("chromeOptions")).get("browserVersion"));
+        Map<String, Object> sauceOptions = (Map<String, Object>) ( config.get("chromeSauceOptions"));
+        options.setCapability("sauce:options", sauceOptions);
         return options;
     }
-
 
     private SafariOptions loadSafariOptions() {
         SafariOptions options = new SafariOptions();
-        options.setPlatformName(config.getSafariOptions().getPlatformName());
-        options.setBrowserVersion(config.getSafariOptions().getBrowserVersion());
-        options.setCapability("sauce:options", config.getSafariSauceOptions());
+        options.setPlatformName((String) ((Map) config.get("safariOptions")).get("platformName"));
+        options.setBrowserVersion((String) ((Map) config.get("safariOptions")).get("browserVersion"));
+        Map<String, Object> sauceOptions = (Map<String, Object>) ( config.get("safariSauceOptions"));
+        options.setCapability("sauce:options", sauceOptions);
         return options;
     }
-
 
     public static WebDriver getDriver() {
         return driver;
@@ -100,6 +92,4 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     public void tearDown() {
         driver.quit();
     }
-
-
 }

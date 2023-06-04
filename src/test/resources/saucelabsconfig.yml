@@ -1,0 +1,19 @@
+chromeOptions:
+  platformName: "Windows 11"
+  browserVersion: "latest"
+chromeSauceOptions:
+  username: "oauth-info-b7c5c"
+  accessKey: "5dec74dc-f28d-4043-ab67-ffc89b4967f0"
+  build: "selenium-build-4RPYT"
+  name: "chrome test"
+
+safariOptions:
+  platformName: "macOS 13"
+  browserVersion: "16"
+safariSauceOptions:
+  username: "oauth-info-b7c5c"
+  accessKey: "5dec74dc-f28d-4043-ab67-ffc89b4967f0"
+  build: "<your build id>"
+  name: "safari test"
+
+url: "https://ondemand.us-west-1.saucelabs.com:443/wd/hub"

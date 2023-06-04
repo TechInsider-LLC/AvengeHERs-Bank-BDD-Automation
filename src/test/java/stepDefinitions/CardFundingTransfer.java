@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjectModel.CardFundingTransferPage;
 import pageObjectModel.LogInPage;
-import pageObjectModel.OutgoingWireTransferPage;
 import utility.TestRunner;
 import utility.ScenarioData;
 

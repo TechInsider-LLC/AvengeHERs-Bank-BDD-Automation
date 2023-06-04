@@ -7,12 +7,6 @@
             <class name="utility.TestRunner"/>
         </classes>
     </test>
-    <test name="Firefox">
-        <parameter name="browser" value="firefox"></parameter>
-        <classes>
-            <class name="utility.TestRunner"/>
-        </classes>
-    </test>
     <test name="Edge">
         <parameter name="browser" value="safari"></parameter>
         <classes>

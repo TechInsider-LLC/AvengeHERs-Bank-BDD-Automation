@@ -29,7 +29,7 @@ public class Hooks {
 //    public static final String USER_DIR = "user.dir";
 //
 //    public Hooks() {
-//        File file = new File(getUserDir() + "/src/test/resources/browserstack.yml");
+//        File file = new File(getUserDir() + "/src/test/resources/saucelabsconfig.yml");
 //        browserStackYamlMap = convertYamlFileToMap(file, new HashMap<>());
 //    }
 //
@@ -88,7 +88,7 @@ public class Hooks {
 //            Map<String, Object> config = yaml.load(inputStream);
 //            map.putAll(config);
 //        } catch (Exception e) {
-//            throw new RuntimeException(String.format("Malformed browserstack.yml file - %s.", e));
+//            throw new RuntimeException(String.format("Malformed saucelabsconfig.yml file - %s.", e));
 //        }
 //        return map;
 //    }
