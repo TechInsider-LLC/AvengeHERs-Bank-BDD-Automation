@@ -6,14 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjectModel.CardFundingTransferPage;
 import pageObjectModel.LogInPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
+import utility.WebDriverHelper;
 
 import static org.testng.Assert.assertEquals;
 
 public class CardFundingTransfer {
 
-    WebDriver driver = TestRunner.getDriver();
+    WebDriver driver = WebDriverHelper.getDriver();
     LogInPage logIn = new LogInPage(driver);
     CardFundingTransferPage transfer = new CardFundingTransferPage(driver);
 

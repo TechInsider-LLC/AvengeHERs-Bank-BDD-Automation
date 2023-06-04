@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import pageObjectModel.SEPATransferPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
 
 import java.time.Duration;
@@ -17,7 +17,7 @@ import java.time.Duration;
 import static org.testng.Assert.assertEquals;
 
 public class SEPATransfer {
-    WebDriver driver = TestRunner.getDriver();
+    WebDriver driver = WebDriverHelper.getDriver();
     LogInPage login = new LogInPage(driver);
     SEPATransferPage transfer = new SEPATransferPage(driver);
     WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));

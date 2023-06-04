@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import pageObjectModel.TransferBetweenAccountsPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
 
 
@@ -19,7 +19,7 @@ import static org.testng.Assert.assertEquals;
 
 public class TransferBetweenAccounts {
 
-    WebDriver driver = TestRunner.getDriver();
+    WebDriver driver = WebDriverHelper.getDriver();
     LogInPage logIn = new LogInPage(driver);
     TransferBetweenAccountsPage transfer = new TransferBetweenAccountsPage(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

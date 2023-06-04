@@ -6,14 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjectModel.IncomingWireTransferPage;
 import pageObjectModel.LogInPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
 
 import static org.testng.Assert.assertEquals;
 
 public class IncomingWireTransfer {
 
-    WebDriver driver = TestRunner.getDriver();
+    WebDriver driver = WebDriverHelper.getDriver();
     LogInPage logIn = new LogInPage(driver);
     IncomingWireTransferPage transfer = new IncomingWireTransferPage(driver);
 

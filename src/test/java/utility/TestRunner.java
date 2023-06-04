@@ -2,18 +2,19 @@ package utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.AbstractDriverOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -29,12 +30,15 @@ import java.util.Map;
         features = {"src/test/java/features"},
         glue = {"stepDefinitions", "utility"},
         tags = "@smoke",
-        plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber-reports.json"}
+        plugin = {"pretty", "html:target/cucumber-reports.html",
+                "json:target/cucumber-reports.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 
-    private static WebDriver driver;
+
+
     private Config config;
 
     @Parameters({"browser", "isRemote"})
@@ -48,21 +52,31 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     }
 
     private void setUpLocalDriver(String browser) {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().window().maximize();
+        if (browser.equalsIgnoreCase("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            WebDriver driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.manage().window().maximize();
+            WebDriverHelper.setDriver(driver);
+        } else {
+            WebDriverManager.firefoxdriver().setup();
+            WebDriver driver = new FirefoxDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.manage().window().maximize();
+            WebDriverHelper.setDriver(driver);
+        }
+
     }
 
     private void setUpRemoteDriver(String browser) throws MalformedURLException {
         loadConfig();
+        AbstractDriverOptions<?> options = null;
         if (browser.equalsIgnoreCase("chrome")) {
-            ChromeOptions options = loadChromeOptions();
-            driver = new RemoteWebDriver(new URL(config.getUrl()), options);
-        } else if (browser.equalsIgnoreCase("safari")) {
-            SafariOptions options = loadSafariOptions();
-            driver = new RemoteWebDriver(new URL(config.getUrl()), options);
+            options = loadChromeOptions();
+        } else {
+            options = loadSafariOptions();
         }
+        WebDriverHelper.setDriver(new RemoteWebDriver(new URL(config.getUrl()), options));
     }
 
     private void loadConfig() {
@@ -92,14 +106,22 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     }
 
 
-    public static WebDriver getDriver() {
-        return driver;
-    }
+
+
+
 
     @AfterTest
     public void tearDown() {
-        driver.quit();
+        WebDriver driver = WebDriverHelper.getDriver();
+
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
-
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
 }

@@ -38,3 +38,6 @@ target/
 # Mac
 *.DS_Store
 .DS_Store
+
+allure-report/
+allure-results/

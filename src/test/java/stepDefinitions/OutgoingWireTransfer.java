@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjectModel.LogInPage;
 import pageObjectModel.OutgoingWireTransferPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
 
 import java.time.Duration;
@@ -23,7 +23,7 @@ import static org.testng.Assert.assertEquals;
 
 public class OutgoingWireTransfer {
 
-    WebDriver driver = TestRunner.getDriver();
+    WebDriver driver = WebDriverHelper.getDriver();
     LogInPage logIn = new LogInPage(driver);
     OutgoingWireTransferPage transfer = new OutgoingWireTransferPage(driver);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

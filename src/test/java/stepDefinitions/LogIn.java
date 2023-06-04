@@ -7,14 +7,14 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjectModel.LogInPage;
-import utility.TestRunner;
+import utility.WebDriverHelper;
 import utility.ScenarioData;
 
 import static org.testng.Assert.assertEquals;
 
 public class LogIn {
 
-    WebDriver driver= TestRunner.getDriver();
+    WebDriver driver= WebDriverHelper.getDriver();
     LogInPage logIn = new LogInPage(driver);
 
 

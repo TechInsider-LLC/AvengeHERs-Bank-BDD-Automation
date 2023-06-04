@@ -2,13 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Testing Demo Web Shop" parallel="methods" thread-count="3">
     <test name="Chrome">
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browser" value="chrome"/>
         <classes>
             <class name="utility.TestRunner"/>
         </classes>
     </test>
-    <test name="Edge">
-        <parameter name="browser" value="safari"></parameter>
+    <test name="Safari">
+        <parameter name="browser" value="safari"/>
         <classes>
             <class name="utility.TestRunner"/>
         </classes>
